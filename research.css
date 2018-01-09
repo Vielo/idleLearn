@@ -1,0 +1,298 @@
+@font-face {
+	font-family: chalkFont;
+	src: url(fonts/chalkfont.ttf);
+}
+
+article#Research {
+	font-family: chalkFont;
+	background-image: url(img/research/chalkboard.png);
+	border: 5px ridge silver;
+	color: white;
+}
+
+article#Research h1 {
+	margin: 0;
+	font-size: 35px;
+	font-weight: 700;
+	margin-left: 10px;
+	
+}
+
+article#Research h2 {
+	margin-left: 25px;
+	text-transform: uppercase;
+}
+
+article#Research header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	z-index: -1;
+	max-height: 195px;
+	border-bottom: 20px solid;
+	-webkit-border-image: url(img/research/chalk_line_double.png) 40;
+	-o-border-image: url(img/research/chalk_line_double.png) 40;
+	border-image: url(img/research/chalk_line_double.png) 40;
+}
+
+article#Research header > div {
+	align-self: center;
+	text-align: center;
+}
+
+
+
+.chalk-underline {
+	border-bottom: 10px solid;
+	-webkit-border-image: url(img/research/chalk_line_long.png) 40;
+	-o-border-image: url(img/research/chalk_line_long.png) 40;
+	border-image: url(img/research/chalk_line_long.png) 40;
+}
+
+article#Research header > div:nth-child(1) > div:nth-child(2) { 
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+article#Research header > div:nth-child(1) {
+	width: 25%;
+	margin-right: 50px;
+}
+
+article#Research header > div:nth-child(2) {
+	width: 35%;
+}
+
+article#Research header > div:nth-child(3) {
+	width: 35%;
+}
+
+img.lab-progress {
+	max-height: 180px;
+	max-width: 180px;
+	z-index: 5;
+}
+
+#science-progress {
+	height: 28px;
+	width: 85px;
+	z-index: 1;
+}
+
+.glassware {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	height: 200px;
+	margin-right: 30px;
+}
+
+.glassware div:nth-child(1) {
+	z-index: 5;
+}
+
+.superimposing-glassware {
+	position: absolute;
+	transform: rotate(-90deg);
+	left: 83px;
+	top: 76px;
+	z-index: 1;
+}
+
+.research-timer {
+	align-self: center;
+	font-size: 40px;
+	line-height: 36px;
+	color: white;
+	text-decoration: bold;
+}
+
+.research-container-flex {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.research-container-flex > div:nth-child(odd) {
+	width: 23%;
+	padding: 0 15px 0 15px;
+}
+
+img.research-icon {
+	max-width: 45px;
+	max-height: 45px;
+}
+
+.research-current-image-container {
+	text-align: center;
+}
+
+.research-tree-container-flex {
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	flex-flow: row wrap;
+}
+
+.research-tree-container-flex > div, .research-tree-container-flex > div.research-completed {
+	width: 22%;
+	border: 1px solid gray;
+	border-radius: 7px;
+	margin: 2px;
+	text-align: center;
+	order: 1;
+}
+
+.button-research {
+	cursor: pointer;
+	box-shadow: 2px 2px #999;
+	background-color: white;
+}
+
+.button-research:hover {
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+	zoom: 1;
+
+}
+
+.button-research:active {
+	box-shadow: 0 1px #999;
+	transform: translateY(2px);
+}
+
+.research-tree-container-flex > div.research-completed {
+	opacity: 0.5;
+	filter: alpha(opacity=40);
+	zoom: 1;
+}
+
+article#Research h3 {
+	text-align: center;
+}
+
+#current-research-name {
+	color: #ccff99;
+}
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+   appearance: none;
+
+	width: 200px;
+	height: 20px;
+}
+
+progress:not([value]) {
+	width: 200px;
+	height: 20px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #ff0000, #ffcc00, #2eb82e);
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+@-webkit-keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+@keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+.postit {
+  color: black;
+  line-height: 1;
+  text-align:center;     
+  width: 120px;    
+  margin: 25px;    
+  min-height:140px;
+  max-height:140px;
+  padding-top:35px;
+  position:relative;   
+  border:1px solid #E8E8E8;  
+  border-top:40px solid #fdfd86;
+  font-family:'Reenie Beanie';    
+  font-size:22px;      
+  border-bottom-right-radius: 60px 5px;
+  display: inline-block;
+   background: #ffff88; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(81%,#ffff88), color-stop(82%,#ffff88), color-stop(82%,#ffff88), color-stop(100%,#ffffc6)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* IE10+ */
+background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+ 
+ .postit img {
+	max-width: 150px;
+	max-height: 150px;
+ }
+ 
+ .postit-image-container {
+	 position: absolute;
+	 left: 35px;
+	 bottom: 25px;
+ }
+ 
+.postit:after {     
+   content: "";
+  position:absolute;
+  z-index:-1;
+  right:-0px; bottom:20px;
+  width:200px;
+  height: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow:2px 15px 5px rgba(0, 0, 0, 0.40);
+-moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+ -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+      -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+     -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+         transform: matrix(-1, -0.1, 0, 1, 0, 0);
+}
+
+.current-research-animated {
+  	letter-spacing: 0;
+	margin: 0 auto;
+
+	/* Clip Background Image */
+
+	background: url("img/research/animated_text_fill.png") repeat-y;
+	-webkit-background-clip: text;
+	background-clip: text;
+
+/* Animate Background Image */
+
+	-webkit-text-fill-color: transparent;
+	-webkit-animation: aitf 80s linear infinite;
+
+/* Activate hardware acceleration for smoother animations */
+
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+
+  }
+
+@-webkit-keyframes aitf {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 100% 50%; }
+}

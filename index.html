@@ -1,0 +1,304 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="interface.css" />
+	<link rel="stylesheet" type="text/css" href="research.css" />
+	<script type="text/javascript" src="buildings.js"></script>
+	<script type="text/javascript" src="research.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<nav>
+		<div class="tab">
+			<button class="tablinks" onclick="openTab(event, 'Production')" id="defaultOpen">Production</button>
+			<button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
+			<button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
+		</div>
+		<div id="HUDinfo">
+			<div id="CurrentResources">
+				<span id="stone">0</span> stone
+				<span id="science">0</span> science
+			</div> 
+			<div id="CurrentResourcesPerSecond">
+				(<span id="stonePerSec">0</span> /sec.)
+			</div>
+			
+		</div>
+		<div>
+			<img src="img/icon_mineStone.png" onClick="stoneClick(1)"></img>
+		</div>
+	</nav>
+	<section>
+		
+		<article id="Production" class="tabContent">
+			
+			<div class="ProductionLine">
+				<div class="building-icon">
+					<div class="tooltip"><img src="img/icon_stoneExtractor.png"></img><div class="tooltiptext" id="stoneExtractorFluff"></div></div>
+					
+					<div class="prodLineItem">
+						<div>Qty: <span id="stoneExtractorTotalAmount">0</span></div> 
+						<div class="cost">Cost: <span id="stoneExtractorCost">10</span></div>
+					</div>
+				</div>
+				<div class="building-ui">
+					<div class="building-ui-top"><h1 id="stoneExtractorTitle"></h1></div>
+					<div class="building-ui-middle">
+						<button onClick="buyBuilding('stoneExtractor', 1)" id="stoneExtractorButtonBuyOne" disabled="">BUY 1</button>
+						<button onClick="buyBuilding('stoneExtractor', 5)" id="stoneExtractorButtonBuyFive" disabled="">5</button>
+						<button onClick="buyBuilding('stoneExtractor', 25)" id="stoneExtractorButtonBuyTwentyFive" disabled="">25</button>
+						<button onClick= "buyBuilding('stoneExtractor', checkForMaxPossible(0).buildingsToBuy)" id="stoneExtractorButtonBuyMax" disabled="">MAX</button>
+					</div>
+					<div class="building-ui-bottom">
+						<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="stoneExtractorProgressBar"></div></div>
+						<div class="float-right-item"><span id="stoneExtractorStonePerSec">0</span><span>/sec.</span></div>
+					</div>
+				</div>
+				<div class="buildings-attachments">
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item ">attachment 1</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 2</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 3</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 4</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			
+			<div class="ProductionLine">
+				<div class="building-icon">
+					<div class="tooltip"><img src="img/icon_deepStonemine.png"></img><div class="tooltiptext" id="deepStoneMineFluff"></div></div>
+					
+					<div class="prodLineItem">
+						<div>Qty: <span id="deepStoneMineTotalAmount">0</span></div> 
+						<div class="cost">Cost: <span id="deepStoneMineCost">1000</span></div>
+					</div>
+				</div>
+				<div class="building-ui">
+					<div class="building-ui-top"><h1>Deep Stone Mines</h1></div>
+					<div class="building-ui-middle">
+						<button onClick="buyBuilding('deepStoneMine', 1)" id="deepStoneMineButtonBuyOne" disabled="">BUY 1</button>
+						<button onClick="buyBuilding('deepStoneMine', 5)" id="deepStoneMineButtonBuyFive" disabled="">5</button>
+						<button onClick="buyBuilding('deepStoneMine', 25)" id="deepStoneMineButtonBuyTwentyFive" disabled="">25</button>
+						<button onClick="buyBuilding('deepStoneMine', checkForMaxPossible(1).buildingsToBuy)" id="deepStoneMineButtonBuyMax" disabled="">MAX</button>
+					</div>
+					<div class="building-ui-bottom">
+						<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="deepStoneMineProgressBar"></div></div>
+						<div class="float-right-item"><span id="deepStoneMineStonePerSec">0</span><span>/sec.</span></div>
+					</div>
+				</div>
+				<div class="buildings-attachments">
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item ">attachment 1</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 2</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 3</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 4</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			
+			<div class="ProductionLine">
+				<div class="building-icon">
+					<div class="tooltip"><img src="img/icon_seabedMine.png"></img><div class="tooltiptext" id="seabedMineFluff"></div></div>
+					
+					<div class="prodLineItem">
+						<div>Qty: <span id="seabedMineTotalAmount">0</span></div> 
+						<div class="cost">Cost:<span id="seabedMineCost">25 000</span></div>
+					</div>
+				</div>
+				<div class="building-ui">
+					<div class="building-ui-top"><h1 id="seabedMineTitle"></h1></div>
+					<div class="building-ui-middle">
+						<button onClick="buyBuilding('seabedMine', 1)" id="seabedMineButtonBuyOne" disabled="">BUY 1</button>
+						<button onClick="buyBuilding('seabedMine', 5)" id="seabedMineButtonBuyFive" title="" disabled="">5</button>
+						<button onClick="buyBuilding('seabedMine', 25)" id="seabedMineButtonBuyTwentyFive" disabled="">25</button>
+						<button onClick= "buyBuilding('seabedMine', checkForMaxPossible(2).buildingsToBuy)" id="seabedMineButtonBuyMax" disabled="">MAX</button>
+					</div>
+					<div class="building-ui-bottom">
+						<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="seabedMineProgressBar"></div></div>
+						<div class="float-right-item"><span id="seabedMineStonePerSec">0</span><span>/sec.</span></div>
+					</div>
+				</div>
+				<div class="buildings-attachments">
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item ">attachment 1</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 2</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 3</div>
+					</div>
+					<div class="buildings-attachments-items">
+						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+						<div class="float-left-item">attachment 4</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			
+		</article>
+		<article id="Research" class="tabContent">
+			<header>
+				<div class="postit">
+					<div class="postit-image-container"><img id="research-current-image" src="img/research/icon_research_postit.png"></img></div>
+				</div>
+				<div>
+					<div><h1 class="chalk-underline" id="current-research-title">Current research</h1></div>
+					<div><h1 id="current-research-name">Research project name here</h1></div>
+				</div>
+					<div class="glassware">
+						<div><img src="img/research/test_lab_glassware.png" class="lab-progress"></img></div>
+						<div class="superimposing-glassware"><progress id="science-progress"></progress></div>
+						<div class="research-timer"><span id="research-time-left">25 days, 14:24:44 </span></div>
+					</div>
+				</div>
+			</header>
+			<div>
+				<h2><span>Available research projects</span></h2>
+			</div>
+			<div class="research-container-flex">
+				<div class="research-knowledge">
+					<h3><span>Knowledge</span></h3>
+					<div class="research-tree-container-flex">
+						<div id="laboratory-div" class="button-research"><img id="laboratory" src="img/research/icon_laboratory.png" class="research-icon"onClick="buyResearchKnowledge('laboratory')"></img></div>
+						<div class="button-research"><img src="img/research/icon_researchSpeedI.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						
+					</div>
+				</div>
+				<div><img src="img/research/chalk_line_long_horizontal.png"></img></div>
+				<div class="research-industry">
+					<h3><span>Industry</span></h3>
+					<div class="research-tree-container-flex">
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						
+					</div>
+				</div>
+				<div><img src="img/research/chalk_line_long_horizontal.png"></img></div>
+				<div>
+				
+					<h3><span>Research tree 3</span></h3>
+					<div class="research-tree-container-flex">
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+					</div>
+				</div>
+				<div><img src="img/research/chalk_line_long_horizontal.png"></img></div>
+				<div>
+					<h3><span>Research tree 4</span></h3>
+					<div class="research-tree-container-flex">
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+					</div>
+				</div>
+			</div>
+		</article>
+		<article id="Statistics" class="tabContent">
+		
+		</article>
+		<div class="devTools">
+				<button onClick="cheat5000()" id="cheat">CHEAT (get 5000 stone instantly)</button>
+				<button onClick="resetStones()" id="reset">RESET STONE AMOUNT</button>
+				<button onClick="cheatScience()" id="cheat-science">ADD 5000 SCIENCE</button>
+			</div>
+	</section>
+	<script>
+	document.getElementById("defaultOpen").click();
+	document.getElementById("deepStoneMineFluff").innerHTML = buildingsList[1].fluffText;
+	document.getElementById("seabedMineFluff").innerHTML = buildingsList[2].fluffText;
+	document.getElementById("seabedMineTitle").innerHTML = buildingsList[2].name;
+	document.getElementById("stoneExtractorTitle").innerHTML = buildingsList[0].name;
+
+	</script>
+</body>

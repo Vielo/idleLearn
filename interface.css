@@ -1,0 +1,234 @@
+/*
+* {
+	border: 1px dotted red !important;
+}
+
+body {
+	width: 1024px;
+	margin: 0;
+	padding: 0;
+}
+*/
+section {
+	width: 1000px;
+}
+
+article#production {
+	width: 100%;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+h1 {
+	text-transform: uppercase;
+	font-size: 150%;
+	margin: 0;
+}
+
+nav {
+	margin-bottom: 20px;
+}
+
+#HUDinfo {
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+#CurrentResources {
+	font-size: 2em;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+#CurrentResourcesPerSecond {
+	display: inline-block;
+	border-left-width: 1px;
+	border-left-style: solid;
+	padding-left: 10px;
+}
+
+.ProductionLine {
+	margin-bottom: 10px;
+	width: 500px;
+	height: 120px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.ProductionLine button {
+	font-size: 115%;
+}
+
+.cost {
+	max-height: 100%;
+}
+
+.float-left-item {
+	float: left;
+}
+
+.float-right-item {
+	float: right;
+}
+
+.building-icon {
+	display: inline-block;
+	float: left;
+	width: 90px;
+	padding-left: 10px;
+	height: 100%;
+}
+
+.building-icon img {
+	max-height: 75px;
+	max-width: 75px;
+}
+
+.building-ui {
+	float: left;
+	height: 120px;
+	width: 240px;
+}
+
+.building-ui-top {
+	height: 40px;
+}
+
+.building-ui-middle {
+	height: 40px;
+}
+
+.building-ui-bottom {
+	position: relative;
+	height: 30px;
+}
+
+.progress-bar-frame {
+	width: 150px;
+	text-align: center;
+	line-height: 25px;
+	height: 25px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.progress-bar {
+	height: 25px;
+	width: 0;
+	background-color: gray;
+}
+
+.buildings-attachments {
+	float: right;
+	height: 100%;
+}
+
+.buildings-attachments-items {
+	height: 30px;
+	font-size: 120%;
+	margin-right: 5px;
+}
+
+.attachment-image {
+	width: 26px;
+	height: 26px;
+	margin-right: 5px;
+}
+
+.devTools {
+	margin-top: 30px;
+}
+
+.devTools > button#cheat {
+		background-color: green;
+		color: white;
+		font-size: 150%;
+		float: left;
+}
+
+.devTools > button#reset {
+		background-color: red;
+		color: white;
+		font-size: 150%;
+		float: left;
+}
+
+.devTools > button#cheat-science {
+	background-color: blue;
+	color: white;
+	font-size: 150%;
+	float: left;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+	font-size: 1.5em;
+}
+
+
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+
+    border: 1px solid #ccc;
+	-webkit-animation: fadeEffect 1s;
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	background-color: #818181;
+	color: #fff;
+	width: 200px;
+	text-align: center;
+	padding: 5px 10px;
+	border-radius: 4px;
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
