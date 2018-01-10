@@ -5,6 +5,14 @@ var stoneTest= 0;
 var science = 0;
 var basicResearchSpeed = 1000;
 
+function tooltipCreation(item) {
+	document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = buildingsList[item].fluffText;
+}
+
+function tooltipRemoval(item) {
+	document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = "";
+}
+
 function researchSpeed() {
 	var bonusLevelI = researchKnowledgeList[0].level * researchKnowledgeList[0].levelBonus;
 	return basicResearchSpeed + (bonusLevelI * basicResearchSpeed);

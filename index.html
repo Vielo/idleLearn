@@ -33,7 +33,7 @@
 			
 			<div class="ProductionLine">
 				<div class="building-icon">
-					<div class="tooltip"><img src="img/icon_stoneExtractor.png"></img><div class="tooltiptext" id="stoneExtractorFluff"></div></div>
+					<div class="tooltip" onmouseover="tooltipCreation(0)" onmouseout="tooltipRemoval(0)"><img src="img/icon_stoneExtractor.png"></img><span id="stoneExtractorFluff"></span></div>
 					
 					<div class="prodLineItem">
 						<div>Qty: <span id="stoneExtractorTotalAmount">0</span></div> 
@@ -77,7 +77,7 @@
 			
 			<div class="ProductionLine">
 				<div class="building-icon">
-					<div class="tooltip"><img src="img/icon_deepStonemine.png"></img><div class="tooltiptext" id="deepStoneMineFluff"></div></div>
+					<div class="tooltip" onmouseover="tooltipCreation(1)" onmouseout="tooltipRemoval(1)"><img src="img/icon_deepStonemine.png"></img><span id="deepStoneMineFluff"></span></div>
 					
 					<div class="prodLineItem">
 						<div>Qty: <span id="deepStoneMineTotalAmount">0</span></div> 
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<div class="building-ui">
-					<div class="building-ui-top"><h1>Deep Stone Mines</h1></div>
+					<div class="building-ui-top"><h1 id="test-title">Deep Stone Mines</h1></div>
 					<div class="building-ui-middle">
 						<button onClick="buyBuilding('deepStoneMine', 1)" id="deepStoneMineButtonBuyOne" disabled="">BUY 1</button>
 						<button onClick="buyBuilding('deepStoneMine', 5)" id="deepStoneMineButtonBuyFive" disabled="">5</button>
@@ -121,7 +121,7 @@
 			
 			<div class="ProductionLine">
 				<div class="building-icon">
-					<div class="tooltip"><img src="img/icon_seabedMine.png"></img><div class="tooltiptext" id="seabedMineFluff"></div></div>
+					<div class="tooltip" onmouseover="tooltipCreation(2)" onmouseout="tooltipRemoval(2)"><img src="img/icon_seabedMine.png"></img><span id="seabedMineFluff"></span></div>
 					
 					<div class="prodLineItem">
 						<div>Qty: <span id="seabedMineTotalAmount">0</span></div> 
@@ -296,8 +296,6 @@
 	</section>
 	<script>
 	document.getElementById("defaultOpen").click();
-	document.getElementById("deepStoneMineFluff").innerHTML = buildingsList[1].fluffText;
-	document.getElementById("seabedMineFluff").innerHTML = buildingsList[2].fluffText;
 	document.getElementById("seabedMineTitle").innerHTML = buildingsList[2].name;
 	document.getElementById("stoneExtractorTitle").innerHTML = buildingsList[0].name;
 
