@@ -33,7 +33,7 @@
 			
 			<div class="ProductionLine">
 				<div class="building-icon">
-					<div class="tooltip" onmouseover="tooltipCreation(0)" onmouseout="tooltipRemoval(0)"><img src="img/icon_stoneExtractor.png"></img><span id="stoneExtractorFluff"></span></div>
+					<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 0)" onmouseout="tooltipRemoval(buildingsList, 0)"><img src="img/icon_stoneExtractor.png"></img><div id="stoneExtractorFluff"></div></div>
 					
 					<div class="prodLineItem">
 						<div>Qty: <span id="stoneExtractorTotalAmount">0</span></div> 
@@ -77,7 +77,7 @@
 			
 			<div class="ProductionLine">
 				<div class="building-icon">
-					<div class="tooltip" onmouseover="tooltipCreation(1)" onmouseout="tooltipRemoval(1)"><img src="img/icon_deepStonemine.png"></img><span id="deepStoneMineFluff"></span></div>
+					<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 1)" onmouseout="tooltipRemoval(buildingsList, 1)"><img src="img/icon_deepStonemine.png"></img><div id="deepStoneMineFluff"></div></div>
 					
 					<div class="prodLineItem">
 						<div>Qty: <span id="deepStoneMineTotalAmount">0</span></div> 
@@ -121,7 +121,7 @@
 			
 			<div class="ProductionLine">
 				<div class="building-icon">
-					<div class="tooltip" onmouseover="tooltipCreation(2)" onmouseout="tooltipRemoval(2)"><img src="img/icon_seabedMine.png"></img><span id="seabedMineFluff"></span></div>
+					<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 2)" onmouseout="tooltipRemoval(buildingsList, 2)"><img src="img/icon_seabedMine.png"></img><div id="seabedMineFluff"></div></div>
 					
 					<div class="prodLineItem">
 						<div>Qty: <span id="seabedMineTotalAmount">0</span></div> 
@@ -187,7 +187,7 @@
 				<div class="research-knowledge">
 					<h3><span>Knowledge</span></h3>
 					<div class="research-tree-container-flex">
-						<div id="laboratory-div" class="button-research"><img id="laboratory" src="img/research/icon_laboratory.png" class="research-icon"onClick="buyResearchKnowledge('laboratory')"></img></div>
+						<div class="tooltip button-research" id="laboratory-div" onClick="buyResearchKnowledge('laboratory')"><img id="laboratory" src="img/research/icon_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchKnowledgeList, 0)" onmouseout="tooltipRemoval(researchKnowledgeList, 0)"></img><div id="laboratoryFluff"></div></div>
 						<div class="button-research"><img src="img/research/icon_researchSpeedI.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>

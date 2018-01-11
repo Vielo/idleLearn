@@ -216,7 +216,7 @@ nav {
 	position: relative;
 }
 
-.tooltip span {
+.tooltip div {
     font-size: 15px;
     position:absolute;
     z-index: 999;
@@ -226,14 +226,22 @@ nav {
     left: 100%;
     background:#000;
     color:#e0e0e0;
-    padding:0px 7px;
+	padding:10px;
+	border: 2px ridge silver;
 
      
     opacity: 0; 
     transition:opacity 0.4s ease-out; 
     }       
          
-.tooltip:hover span {
+.tooltip:hover div {
     opacity: 1;
-    bottom:-35px;
-    }
+	bottom:-35px;
+	}
+	
+.tooltip div h1 {
+	margin: 5px;
+	font-size: 20px;
+	color: gold;
+	border-bottom: 1px solid silver;
+}

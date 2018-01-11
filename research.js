@@ -6,7 +6,7 @@ var researchKnowledgeList = [
 		codeName: 'laboratory',
 		fluffText: 'Making your employees do research during breaks and after hours is good and all, but you cannot expect them to match qualified scientists. Research this to begin your journey towards the Rockier Future.',
 		icon: 'img/research/icon_laboratory.png',
-		duration: 60000 // 60 seconds
+		duration: 6000 // 60 seconds
 	},
 	researchSpeedI = {
 		name: "Research Speed I",

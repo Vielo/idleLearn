@@ -5,14 +5,24 @@ var stoneTest= 0;
 var science = 0;
 var basicResearchSpeed = 1000;
 
-function tooltipCreation(item) {
-	document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = buildingsList[item].fluffText;
+function tooltipCreation(list, item) {
+	if (list == buildingsList) {
+		document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = buildingsList[item].fluffText;
+	}
+	else if (list == researchKnowledgeList) {
+		document.getElementById(researchKnowledgeList[item].codeName + "Fluff").innerHTML = "<h1>" + researchKnowledgeList[item].name + "</h1>" + researchKnowledgeList[item].fluffText;
+	}
+	
 }
 
-function tooltipRemoval(item) {
-	document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = "";
+function tooltipRemoval(list, item) {
+	if (list == buildingsList) {
+		document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = "";
+	}
+	else if (list == researchKnowledgeList){
+		document.getElementById(researchKnowledgeList[item].codeName + "Fluff").innerHTML = "";
+	}
 }
-
 function researchSpeed() {
 	var bonusLevelI = researchKnowledgeList[0].level * researchKnowledgeList[0].levelBonus;
 	return basicResearchSpeed + (bonusLevelI * basicResearchSpeed);
@@ -35,7 +45,7 @@ function updateStonePerSecond() {  		//updates the stonePerSec variable and the 
 	document.getElementById('stonePerSec').innerHTML = stonePerSec
 }
 
-function checkForMaxPossible(itemMax) {
+function checkForMaxPossible(itemMax) {		//checks how many buildings of a certain type the player can buy and their cost
 	var tempCostForMaxBuildingsBefore = 0;
 	var tempCostForMaxBuildingsAfter = Math.floor(buildingsList[itemMax].initialCost * Math.pow(1.1, buildingsList[itemMax].totalAmount))
 	var tempTotalAmountOfBuildings = buildingsList[itemMax].totalAmount;
@@ -110,7 +120,8 @@ function buyResearchKnowledge(research){	// used to start and process all the re
 						document.getElementById("current-research-title").innerHTML="Finished research: ";
 						document.getElementById("current-research-title").setAttribute("class", "current-research-animated chalk-underline");
 						document.getElementById(tempResearch.codeName + "-div").setAttribute("style", "order: 2");
-						document.getElementById(tempResearch.codeName + "-div").setAttribute("class", "research-completed button-research");
+						document.getElementById(tempResearch.codeName + "-div").setAttribute("class", "research-completed tooltip");
+						document.getElementById(tempResearch.codeName + "-div").removeAttribute("onClick");
 					}, researchKnowledgeList[item].duration);
 				})(item);
 			}

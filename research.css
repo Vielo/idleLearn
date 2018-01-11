@@ -147,9 +147,10 @@ img.research-icon {
 	cursor: pointer;
 	box-shadow: 2px 2px #999;
 	background-color: white;
+	position: relative;
 }
 
-.button-research:hover {
+.button-research img:hover {
 	opacity: 0.4;
 	filter: alpha(opacity=40);
 	zoom: 1;
@@ -162,9 +163,10 @@ img.research-icon {
 }
 
 .research-tree-container-flex > div.research-completed {
-	opacity: 0.5;
-	filter: alpha(opacity=40);
+	background: rgba(129, 249, 129, 0.473);
 	zoom: 1;
+	box-shadow: 2px 2px rgba(102, 158, 112, 0.5);
+	position: relative;
 }
 
 article#Research h3 {
