@@ -13,15 +13,25 @@
 			<button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
 			<button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
 		</div>
-		<div id="HUDinfo">
-			<div id="CurrentResources">
-				<span id="stone">0</span> stone
-				<span id="science">0</span> science
-			</div> 
-			<div id="CurrentResourcesPerSecond">
-				(<span id="stonePerSec">0</span> /sec.)
+		<div class="resource-display">
+			<div id="display-minerals">
+				<img src="img/icon_mineral.png"></img><span id="minerals">0</span>
 			</div>
-			
+			<div id="display-steel">
+				<img src="img/icon_steel.png"></img><span id="steel">0</span>
+			</div>
+			<div id="display-oil">
+				<img src="img/icon_oil.png"></img><span id="oil">0</span>
+			</div>
+			<div id="display-plastics">
+					<img src="img/icon_plastics.png"></img><span id="plastics">0</span>
+			</div>
+			<div id="display-circuits">
+				<img src="img/icon_circuit.png"></img><span id="circuits">0</span>
+			</div>
+			<div id="display-science">
+				<img src="img/research/icon_research.png"></img><span id="science">0</span>
+			</div> 
 		</div>
 		<div>
 			<img src="img/icon_mineStone.png" onClick="stoneClick(1)"></img>
@@ -85,7 +95,7 @@
 					</div>
 				</div>
 				<div class="building-ui">
-					<div class="building-ui-top"><h1 id="test-title">Deep Stone Mines</h1></div>
+					<div class="building-ui-top"><h1 id="test-title">Deep Mine</h1></div>
 					<div class="building-ui-middle">
 						<button onClick="buyBuilding('deepStoneMine', 1)" id="deepStoneMineButtonBuyOne" disabled="">BUY 1</button>
 						<button onClick="buyBuilding('deepStoneMine', 5)" id="deepStoneMineButtonBuyFive" disabled="">5</button>
@@ -289,10 +299,11 @@
 		
 		</article>
 		<div class="devTools">
-				<button onClick="cheat5000()" id="cheat">CHEAT (get 5000 stone instantly)</button>
+				<button onClick="cheat5000()" id="cheat">CHEAT (5000 minerals)</button>
 				<button onClick="resetStones()" id="reset">RESET STONE AMOUNT</button>
 				<button onClick="cheatScience()" id="cheat-science">ADD 5000 SCIENCE</button>
-			</div>
+				<button onClick="cheatQi()" id="cheat">CHEAT (5Qi minerals)</button>
+		</div>
 	</section>
 	<script>
 	document.getElementById("defaultOpen").click();

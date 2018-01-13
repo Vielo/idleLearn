@@ -31,22 +31,36 @@ nav {
 	margin-bottom: 20px;
 }
 
-#HUDinfo {
-	margin-top: 20px;
-	margin-left: 10px;
+.resource-display {
+	position: relative;
+	display: flex;
+	padding: 5px;
+	background: repeating-linear-gradient(
+  45deg,
+  #bcb360,
+  #bcb360 10px,
+  #2b2c2e 10px,
+  #2b2c2e 20px
+);
 }
 
-#CurrentResources {
-	font-size: 2em;
-	display: inline-block;
+.resource-display div {
+	background-color: rgba(252, 249, 249, 0.85);
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 0px 10px 0px 5px;
+	margin-right: 10px;
+	width: 130px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	font-size: 1.5em;
+}
+
+.resource-display div>img {
+	
+	max-height: 35px;
 	margin-right: 5px;
-}
-
-#CurrentResourcesPerSecond {
-	display: inline-block;
-	border-left-width: 1px;
-	border-left-style: solid;
-	padding-left: 10px;
 }
 
 .ProductionLine {
@@ -76,7 +90,7 @@ nav {
 .building-icon {
 	display: inline-block;
 	float: left;
-	width: 90px;
+	width: 110px;
 	padding-left: 10px;
 	height: 100%;
 }
