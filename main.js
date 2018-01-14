@@ -7,10 +7,6 @@ var currencyList = {
 	science: 0,
 };
 
-function currencyConverted(resource) {
-
-};
-
 function abbrNum(number, decPlaces) { 		//abbreviates numbers for display, courtesy of Jeff B (https://stackoverflow.com/users/179216/jeff-b0)
     // 2 decimal places => 100, 3 => 1000, etc
     decPlaces = Math.pow(10,decPlaces);
@@ -71,6 +67,11 @@ function tooltipRemoval(list, item) {
 		document.getElementById(researchKnowledgeList[item].codeName + "Fluff").innerHTML = "";
 	}
 }
+
+function hoverMineBarCreation(list, item) {
+	doc
+}
+
 function researchSpeed() {
 	var bonusLevelI = researchKnowledgeList[0].level * researchKnowledgeList[0].levelBonus;
 	return basicResearchSpeed + (bonusLevelI * basicResearchSpeed);
@@ -323,6 +324,32 @@ function fillResearchProgressBar(duration) {	//fills the research progress bar
 	
 	}
 }
+
+var isMouseDown = false;
+
+/*function mouseDown() {
+	isMouseDown = true;
+	var manualProgress = 0;
+	var mouseHold = setInterval(function() {
+		if (manualProgress >= 5) {
+			currencyList.minerals = currencyList.minerals + 100;
+			document.getElementById("minerals").innerHTML = abbrNum(currencyList.minerals, 2)
+			console.log("got 100 minerals!");
+			manualProgress = 0;
+		}
+		manualProgress++;
+		console.log("manual progress increased by 1, " + manualProgress + " total");
+		
+		if (isMouseDown == false) {
+			clearInterval(mouseHold)
+		} 
+    }, 200);
+	
+}
+function mouseUp() {
+    isMouseDown = false;
+}
+*/
 
 function resetStones(){
 	currencyList.minerals = 0;
