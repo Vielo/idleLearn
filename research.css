@@ -119,8 +119,9 @@ img.lab-progress {
 }
 
 img.research-icon {
-	max-width: 45px;
-	max-height: 45px;
+	max-width: 40px;
+	max-height: 40px;
+	padding: 3px;
 }
 
 .research-current-image-container {
@@ -160,6 +161,7 @@ img.research-icon {
 .button-research:active {
 	box-shadow: 0 1px #999;
 	transform: translateY(2px);
+	z-index: 999;
 }
 
 .research-tree-container-flex > div.research-completed {

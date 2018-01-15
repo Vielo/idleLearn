@@ -2,13 +2,11 @@
 * {
 	border: 1px dotted red !important;
 }
-
-body {
-	width: 1024px;
-	margin: 0;
-	padding: 0;
-}
 */
+body {
+	font-family: 'Cabin Condensed', sans-serif;
+}
+
 section {
 	width: 1000px;
 }
@@ -28,7 +26,7 @@ h1 {
 }
 
 nav {
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 }
 
 .resource-display {
@@ -63,12 +61,34 @@ nav {
 	margin-right: 5px;
 }
 
+.buildings-container {
+	display: flex;
+	width: 1050px;
+	justify-content: space-between;
+}
+
+.basic-buildings {
+	display: flex;
+	width: 500px;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.advanced-buildings {
+	display: flex;
+	width: 500px;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
 .ProductionLine {
 	margin-bottom: 10px;
-	width: 500px;
+	width: 490px;
 	height: 120px;
 	border-style: solid;
 	border-width: 1px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .ProductionLine button {
@@ -88,10 +108,8 @@ nav {
 }
 
 .building-icon {
-	display: inline-block;
 	position: relative;
-	float: left;
-	width: 110px;
+	width: 90px;
 	padding-left: 10px;
 	height: 100%;
 }
@@ -184,7 +202,7 @@ nav {
 }
 
 .devTools {
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .devTools > button#cheat {

@@ -7,6 +7,11 @@ var currencyList = {
 	science: 0,
 };
 
+var playerState = {
+	buildingCostPower: 1.1
+}
+
+
 function abbrNum(number, decPlaces) { 		//abbreviates numbers for display, courtesy of Jeff B (https://stackoverflow.com/users/179216/jeff-b0)
     // 2 decimal places => 100, 3 => 1000, etc
     decPlaces = Math.pow(10,decPlaces);
@@ -53,8 +58,8 @@ function tooltipCreation(list, item) {
 	if (list == buildingsList) {
 		document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = buildingsList[item].fluffText;
 	}
-	else if (list == researchKnowledgeList) {
-		document.getElementById(researchKnowledgeList[item].codeName + "Fluff").innerHTML = "<h1>" + researchKnowledgeList[item].name + "</h1>" + researchKnowledgeList[item].fluffText;
+	else if (list == researchTierOneList) {
+		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "<h1>" + researchTierOneList[item].name + "</h1>" + researchTierOneList[item].fluffText;
 	}
 	
 }
@@ -63,8 +68,8 @@ function tooltipRemoval(list, item) {
 	if (list == buildingsList) {
 		document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = "";
 	}
-	else if (list == researchKnowledgeList){
-		document.getElementById(researchKnowledgeList[item].codeName + "Fluff").innerHTML = "";
+	else if (list == researchTierOneList){
+		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "";
 	}
 }
 
@@ -73,7 +78,7 @@ function hoverMineBarCreation(list, item) {
 }
 
 function researchSpeed() {
-	var bonusLevelI = researchKnowledgeList[0].level * researchKnowledgeList[0].levelBonus;
+	var bonusLevelI = researchTierOneList[0].level * researchTierOneList[0].levelBonus;
 	return basicResearchSpeed + (bonusLevelI * basicResearchSpeed);
 }
 
@@ -84,12 +89,12 @@ function stoneClick(number) {
 
 function checkForMaxPossible(itemMax) {		//checks how many buildings of a certain type the player can buy and their cost
 	var tempCostForMaxBuildingsBefore = 0;
-	var tempCostForMaxBuildingsAfter = Math.floor(buildingsList[itemMax].initialCost * Math.pow(1.1, buildingsList[itemMax].totalAmount))
+	var tempCostForMaxBuildingsAfter = Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount))
 	var tempTotalAmountOfBuildings = buildingsList[itemMax].totalAmount;
 	var buildingsToBuy = 0;
 	while (tempCostForMaxBuildingsAfter <= currencyList.minerals) {
-		tempCostForMaxBuildingsBefore = tempCostForMaxBuildingsBefore + Math.floor(buildingsList[itemMax].initialCost * Math.pow(1.1, tempTotalAmountOfBuildings))
-		tempCostForMaxBuildingsAfter = tempCostForMaxBuildingsAfter + Math.floor(buildingsList[itemMax].initialCost * Math.pow(1.1, (tempTotalAmountOfBuildings + 1)))
+		tempCostForMaxBuildingsBefore = tempCostForMaxBuildingsBefore + Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
+		tempCostForMaxBuildingsAfter = tempCostForMaxBuildingsAfter + Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)))
 		tempTotalAmountOfBuildings++;
 		buildingsToBuy++;
 		
@@ -108,7 +113,7 @@ function pricePredictionForButtonTitle(building, amount) {		//return a value for
 				var tempCostForTwentyFiveBuildings = 0;
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 25; i++) {
-					tempCostForTwentyFiveBuildings = tempCostForTwentyFiveBuildings + Math.floor(buildingsList[item].initialCost * Math.pow(1.1, tempTotalAmountOfBuildings))
+					tempCostForTwentyFiveBuildings = tempCostForTwentyFiveBuildings + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 				}
 				return tempCostForTwentyFiveBuildings
@@ -118,7 +123,7 @@ function pricePredictionForButtonTitle(building, amount) {		//return a value for
 				var tempCostForFiveBuildings = 0;
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 5; i++) {
-					tempCostForFiveBuildings = tempCostForFiveBuildings + (Math.floor(buildingsList[item].initialCost * Math.pow(1.1, tempTotalAmountOfBuildings)))
+					tempCostForFiveBuildings = tempCostForFiveBuildings + (Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)))
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 				}
 				return tempCostForFiveBuildings
@@ -126,7 +131,7 @@ function pricePredictionForButtonTitle(building, amount) {		//return a value for
 			}
 			if (amount == 1) {
 				var tempCostForOneBuilding = 0;
-				tempCostForOneBuilding = Math.floor(buildingsList[item].initialCost * Math.pow(1.1, buildingsList[item].totalAmount));
+				tempCostForOneBuilding = Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
 				return tempCostForOneBuilding;
 
 			}
@@ -134,22 +139,23 @@ function pricePredictionForButtonTitle(building, amount) {		//return a value for
 	}
 }
 
-function buyResearchKnowledge(research){	// used to start and process all the research projects in the game
-	for (var item = 0; item < researchKnowledgeList.length; item++) {
-		if (research == researchKnowledgeList[item].codeName) {
-			if (currencyList.science > researchKnowledgeList[item].cost) {
-				currencyList.science = currencyList.science - researchKnowledgeList[item].cost;
+function buyResearchTierOne(research){	// used to start and process all the research projects in the game
+	for (var item = 0; item < researchTierOneList.length; item++) {
+		if (research == researchTierOneList[item].codeName) {
+			if (currencyList.science > researchTierOneList[item].cost) {
+				currencyList.science = currencyList.science - researchTierOneList[item].cost;
+				document.getElementById(researchTierOneList[item].codeName + "-div").removeAttribute("onClick");
 				document.getElementById("science").innerHTML=currencyList.science;
-				document.getElementById("science-progress").setAttribute("max", researchKnowledgeList[item].duration);
+				document.getElementById("science-progress").setAttribute("max", researchTierOneList[item].duration);
 				document.getElementById("science-progress").setAttribute("value", 0)
-				document.getElementById("current-research-name").innerHTML=researchKnowledgeList[item].name;
-				document.getElementById("research-current-image").setAttribute("src", researchKnowledgeList[item].icon);
+				document.getElementById("current-research-name").innerHTML=researchTierOneList[item].name;
+				document.getElementById("research-current-image").setAttribute("src", researchTierOneList[item].icon);
 				
-				fillResearchProgressBar(researchKnowledgeList[item].duration);
+				fillResearchProgressBar(researchTierOneList[item].duration);
 				
 				(function(item) {
 					setTimeout(function() {
-						tempResearch = researchKnowledgeList[item];
+						tempResearch = researchTierOneList[item];
 						tempResearch.unlocked = true;
 						tempResearch.icon = 'img/research/icon_' + tempResearch.codeName + '_unlocked.png';
 						document.getElementById("research-current-image").setAttribute("src", tempResearch.icon);
@@ -159,7 +165,7 @@ function buyResearchKnowledge(research){	// used to start and process all the re
 						document.getElementById(tempResearch.codeName + "-div").setAttribute("style", "order: 2");
 						document.getElementById(tempResearch.codeName + "-div").setAttribute("class", "research-completed tooltip");
 						document.getElementById(tempResearch.codeName + "-div").removeAttribute("onClick");
-					}, researchKnowledgeList[item].duration);
+					}, researchTierOneList[item].duration);
 				})(item);
 			}
 		}
@@ -170,22 +176,28 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
     for (var item = 0; item < buildingsList.length; item++) {
 		if (building == buildingsList[item].codeName) {
 			if (amount == 1) {
-				buildingsList[item].currentCost = Math.floor(buildingsList[item].initialCost * Math.pow(1.1,buildingsList[item].totalAmount));     //works out the cost of the next building.
-				if (currencyList.minerals >= buildingsList[item].currentCost){                                   //checks whether the player can afford the building
+				var currentCost = {
+					minerals: Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount)),
+					steel: 0,
+					oil: 0,
+					plastics: 0,
+					circuits: 0,
+					science: 0	
+				     }     //works out the cost of the next building.
+				if (currencyList.minerals >= currentCost.minerals && currencyList.steel >= currentCost.steel && currencyList.oil >= currentCost.oil && currencyList.plastics >= currentCost.plastics && currencyList.circuits >= currentCost.circuits && currencyList.science >= currentCost.science){                                   //checks whether the player can afford the building
 					if (buildingsList[item].totalAmount == 0) {
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
 							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								currencyList.minerals = currencyList.minerals + (buildingsList[item].stonePerTick * buildingsList[item].totalAmount);
+								currencyList.minerals = currencyList.minerals + (buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount);
 								document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);
 								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 							}, buildingsList[item].tickSpeed);
 						})(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 1;                                   //increases number of the building by 1
-					currencyList.minerals = currencyList.minerals - buildingsList[item].currentCost;                          //removes minerals spent
+					removeSpentResources(currentCost.minerals, currentCost.steel, currentCost.oil, currentCost.plastics, currentCost.circuits, currentCost.science)  //removes minerals spent AND updates the displayed amount of total resources              
 					document.getElementById(buildingsList[item].codeName + 'TotalAmount').innerHTML = buildingsList[item].totalAmount;  //updates the number of buildings that is displayed
-					document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);  //updates the number of minerals that is displayed
 					
 				}
 			}
@@ -194,7 +206,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 				var tempCostForFiveBuildings = 0;
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 5; i++) {
-					tempCostForFiveBuildings = tempCostForFiveBuildings + Math.floor(buildingsList[item].initialCost * Math.pow(1.1, tempTotalAmountOfBuildings))
+					tempCostForFiveBuildings = tempCostForFiveBuildings + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 					console.log(tempTotalAmountOfBuildings);	
 				}
@@ -203,7 +215,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
 							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								currencyList.minerals = currencyList.minerals + (buildingsList[item].stonePerTick * buildingsList[item].totalAmount);
+								currencyList.minerals = currencyList.minerals + (buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount);
 								document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);
 								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 							}, buildingsList[item].tickSpeed);
@@ -220,7 +232,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 				var tempCostForTwentyFiveBuildings = 0;
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 25; i++) {
-					tempCostForTwentyFiveBuildings = tempCostForTwentyFiveBuildings + Math.floor(buildingsList[item].initialCost * Math.pow(1.1, tempTotalAmountOfBuildings))
+					tempCostForTwentyFiveBuildings = tempCostForTwentyFiveBuildings + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 					console.log(tempTotalAmountOfBuildings);	
 				}
@@ -229,7 +241,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
 							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								currencyList.minerals = currencyList.minerals + (buildingsList[item].stonePerTick * buildingsList[item].totalAmount);
+								currencyList.minerals = currencyList.minerals + (buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount);
 								document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);
 								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 							}, buildingsList[item].tickSpeed);
@@ -250,7 +262,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
 							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								currencyList.minerals = currencyList.minerals + (buildingsList[item].stonePerTick * buildingsList[item].totalAmount);
+								currencyList.minerals = currencyList.minerals + (buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount);
 								document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);
 								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 							}, buildingsList[item].tickSpeed);
@@ -263,9 +275,9 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 					document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);
 				}
 			}
-			document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = (buildingsList[item].totalAmount * buildingsList[item].stonePerTick) / buildingsList[item].tickSpeed * 1000;		//updates the building production per second displayed
-			var nextCost = Math.floor(buildingsList[item].initialCost * Math.pow(1.1,buildingsList[item].totalAmount));       //works out the cost of the next building for the player to see
-			document.getElementById(buildingsList[item].codeName + 'Cost').innerHTML = abbrNum(nextCost, 2);  //updates the Deep Stone Mine cost that is displayed
+			document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number(buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.minerals) / buildingsList[item].tickSpeed * 1000);		//updates the building production per second displayed
+			var nextCost = Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount));       //works out the cost of the next building for the player to see
+			document.getElementById(buildingsList[item].codeName + 'Cost').innerHTML = abbrNum(nextCost, 2);  //updates the building cost to be displayed
 		}
 		document.getElementById(buildingsList[item].codeName + "ButtonBuyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5)), 2));
 		document.getElementById(buildingsList[item].codeName + "ButtonBuyOne").setAttribute("title", "Cost: " +  abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1)), 2));
@@ -325,31 +337,32 @@ function fillResearchProgressBar(duration) {	//fills the research progress bar
 	}
 }
 
-var isMouseDown = false;
-
-/*function mouseDown() {
-	isMouseDown = true;
-	var manualProgress = 0;
-	var mouseHold = setInterval(function() {
-		if (manualProgress >= 5) {
-			currencyList.minerals = currencyList.minerals + 100;
-			document.getElementById("minerals").innerHTML = abbrNum(currencyList.minerals, 2)
-			console.log("got 100 minerals!");
-			manualProgress = 0;
-		}
-		manualProgress++;
-		console.log("manual progress increased by 1, " + manualProgress + " total");
-		
-		if (isMouseDown == false) {
-			clearInterval(mouseHold)
-		} 
-    }, 200);
-	
+function removeSpentResources(minerals, steel, oil, plastics, circuits, science) {		//function to remove (both from actual values AND displayed) minerals spent while buying a building, ONLY use with buildings/advanced buildings!
+	if (minerals > 0) {
+		currencyList.minerals = currencyList.minerals - minerals;
+		document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2)
+	};
+	if (steel > 0) {
+		currencyList.steel = currencyList.steel - steel;
+		document.getElementById('steel').innerHTML = abbrNum(currencyList.steel, 2)
+	};
+	if (oil > 0) {
+		currencyList.oil = currencyList.oil - oil;
+		document.getElementById('oil').innerHTML = abbrNum(currencyList.oil, 2)
+	};
+	if (plastics > 0) {
+		currencyList.plastics = currencyList.plastics - plastics;
+		document.getElementById('plastics').innerHTML = abbrNum(currencyList.plastics, 2)
+	};
+	if (circuits > 0) {
+		currencyList.circuits = currencyList.circuits - circuits;
+		document.getElementById('circuits').innerHTML = abbrNum(currencyList.circuits, 2)
+	};
+	if (science > 0) {
+		currencyList.science = currencyList.science - science;
+		document.getElementById('science').innerHTML = abbrNum(currencyList.science, 2)
+	};
 }
-function mouseUp() {
-    isMouseDown = false;
-}
-*/
 
 function resetStones(){
 	currencyList.minerals = 0;
@@ -368,7 +381,7 @@ function cheatQi() {
 
 function cheatScience() {
 	currencyList.science = currencyList.science + 5000;
-	document.getElementById("science").innerHTML = abbrNum(currencyList.minerals, 2);
+	document.getElementById("science").innerHTML = abbrNum(currencyList.science, 2);
 }
 
 function openTab(evt, tabName) { // Navigation tab logic

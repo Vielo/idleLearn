@@ -1,4 +1,4 @@
-var researchKnowledgeList = [
+var researchTierOneList = [
 	laboratory = {
 		name: "Laboratory",
 		cost: 100,

@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="research.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="event-listeners.js" defer></script>
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Condensed:400,600" rel="stylesheet">
 	
 </head>
 <body ondragstart="return false;" ondrop="return false;">
@@ -35,150 +36,199 @@
 				<img src="img/research/icon_research.png"></img><span id="science">0</span>
 			</div> 
 		</div>
-		<div>
-			<img src="img/icon_mineStone.png" onClick="stoneClick(1)"></img>
-		</div>
+		
 	</nav>
 	<section>
 		
 		<article id="Production" class="tabContent">
-			
-			<div class="ProductionLine">
-				<div class="building-icon">
-					<div class="tooltip production-icon" onmouseover="tooltipCreation(buildingsList, 0)" onmouseout="tooltipRemoval(buildingsList, 0)">
-						<div id="test-track"><img src="img/icon_stoneExtractor.png"></img></div>
-						<div class="manual-float-value" id="manual-float-stoneExtrator"><img src="img/icon_mineral.png"></img>dssdds</div>
-						<div id="stoneExtractorFluff" class="tiptext"></div>
+			<div>
+				<img src="img/icon_mineStone.png" onClick="stoneClick(1)"></img>
+			</div>
+			<div class="buildings-container">
+				<div class="basic-buildings">
+					<div class="ProductionLine">
+						<div class="building-icon">
+							<div class="tooltip production-icon" onmouseover="tooltipCreation(buildingsList, 0)" onmouseout="tooltipRemoval(buildingsList, 0)">
+								<div id="test-track"><img src="img/icon_stoneExtractor.png"></img></div>
+								<div class="manual-float-value" id="manual-float-stoneExtrator"><img src="img/icon_mineral.png"></img>dssdds</div>
+								<div id="stoneExtractorFluff" class="tiptext"></div>
+							</div>
+							
+							<div class="prodLineItem">
+								<div>Qty: <span id="stoneExtractorTotalAmount">0</span></div> 
+								<div class="cost">Cost: <span id="stoneExtractorCost">10</span></div>
+							</div>
+						</div>
+						<div class="building-ui">
+							<div class="building-ui-top"><h1 id="stoneExtractorTitle"></h1></div>
+							<div class="building-ui-middle">
+								<button onClick="buyBuilding('stoneExtractor', 1)" id="stoneExtractorButtonBuyOne" disabled="">BUY 1</button>
+								<button onClick="buyBuilding('stoneExtractor', 5)" id="stoneExtractorButtonBuyFive" disabled="">5</button>
+								<button onClick="buyBuilding('stoneExtractor', 25)" id="stoneExtractorButtonBuyTwentyFive" disabled="">25</button>
+								<button onClick= "buyBuilding('stoneExtractor', checkForMaxPossible(0).buildingsToBuy)" id="stoneExtractorButtonBuyMax" disabled="">MAX</button>
+							</div>
+							<div class="building-ui-bottom">
+								<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="stoneExtractorProgressBar"></div></div>
+								<div class="float-right-item"><span id="stoneExtractorStonePerSec">0</span><span>/sec.</span></div>
+							</div>
+						</div>
+						<div class="buildings-attachments">
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item ">attachment 1</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 2</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 3</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 4</div>
+							</div>
+						</div>
+						
+						
 					</div>
 					
-					<div class="prodLineItem">
-						<div>Qty: <span id="stoneExtractorTotalAmount">0</span></div> 
-						<div class="cost">Cost: <span id="stoneExtractorCost">10</span></div>
+					<div class="ProductionLine">
+						<div class="building-icon">
+							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 1)" onmouseout="tooltipRemoval(buildingsList, 1)"><img src="img/icon_deepStonemine.png"></img><div id="deepStoneMineFluff" class="tiptext"></div></div>
+							
+							<div class="prodLineItem">
+								<div>Qty: <span id="deepStoneMineTotalAmount">0</span></div> 
+								<div class="cost">Cost: <span id="deepStoneMineCost">1000</span></div>
+							</div>
+						</div>
+						<div class="building-ui">
+							<div class="building-ui-top"><h1 id="test-title">Deep Mine</h1></div>
+							<div class="building-ui-middle">
+								<button onClick="buyBuilding('deepStoneMine', 1)" id="deepStoneMineButtonBuyOne" disabled="">BUY 1</button>
+								<button onClick="buyBuilding('deepStoneMine', 5)" id="deepStoneMineButtonBuyFive" disabled="">5</button>
+								<button onClick="buyBuilding('deepStoneMine', 25)" id="deepStoneMineButtonBuyTwentyFive" disabled="">25</button>
+								<button onClick="buyBuilding('deepStoneMine', checkForMaxPossible(1).buildingsToBuy)" id="deepStoneMineButtonBuyMax" disabled="">MAX</button>
+							</div>
+							<div class="building-ui-bottom">
+								<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="deepStoneMineProgressBar"></div></div>
+								<div class="float-right-item"><span id="deepStoneMineStonePerSec">0</span><span>/sec.</span></div>
+							</div>
+						</div>
+						<div class="buildings-attachments">
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item ">attachment 1</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 2</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 3</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 4</div>
+							</div>
+						</div>
+						
+						
 					</div>
-				</div>
-				<div class="building-ui">
-					<div class="building-ui-top"><h1 id="stoneExtractorTitle"></h1></div>
-					<div class="building-ui-middle">
-						<button onClick="buyBuilding('stoneExtractor', 1)" id="stoneExtractorButtonBuyOne" disabled="">BUY 1</button>
-						<button onClick="buyBuilding('stoneExtractor', 5)" id="stoneExtractorButtonBuyFive" disabled="">5</button>
-						<button onClick="buyBuilding('stoneExtractor', 25)" id="stoneExtractorButtonBuyTwentyFive" disabled="">25</button>
-						<button onClick= "buyBuilding('stoneExtractor', checkForMaxPossible(0).buildingsToBuy)" id="stoneExtractorButtonBuyMax" disabled="">MAX</button>
-					</div>
-					<div class="building-ui-bottom">
-						<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="stoneExtractorProgressBar"></div></div>
-						<div class="float-right-item"><span id="stoneExtractorStonePerSec">0</span><span>/sec.</span></div>
-					</div>
-				</div>
-				<div class="buildings-attachments">
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item ">attachment 1</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 2</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 3</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 4</div>
-					</div>
-				</div>
-				
-				
-			</div>
-			
-			<div class="ProductionLine">
-				<div class="building-icon">
-					<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 1)" onmouseout="tooltipRemoval(buildingsList, 1)"><img src="img/icon_deepStonemine.png"></img><div id="deepStoneMineFluff" class="tiptext"></div></div>
 					
-					<div class="prodLineItem">
-						<div>Qty: <span id="deepStoneMineTotalAmount">0</span></div> 
-						<div class="cost">Cost: <span id="deepStoneMineCost">1000</span></div>
+					<div class="ProductionLine">
+						<div class="building-icon">
+							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 2)" onmouseout="tooltipRemoval(buildingsList, 2)"><img src="img/icon_seabedMine.png"></img><div id="seabedMineFluff" class="tiptext"></div></div>
+							
+							<div class="prodLineItem">
+								<div>Qty: <span id="seabedMineTotalAmount">0</span></div> 
+								<div class="cost">Cost:<span id="seabedMineCost">25 000</span></div>
+							</div>
+						</div>
+						<div class="building-ui">
+							<div class="building-ui-top"><h1 id="seabedMineTitle"></h1></div>
+							<div class="building-ui-middle">
+								<button onClick="buyBuilding('seabedMine', 1)" id="seabedMineButtonBuyOne" disabled="">BUY 1</button>
+								<button onClick="buyBuilding('seabedMine', 5)" id="seabedMineButtonBuyFive" title="" disabled="">5</button>
+								<button onClick="buyBuilding('seabedMine', 25)" id="seabedMineButtonBuyTwentyFive" disabled="">25</button>
+								<button onClick= "buyBuilding('seabedMine', checkForMaxPossible(2).buildingsToBuy)" id="seabedMineButtonBuyMax" disabled="">MAX</button>
+							</div>
+							<div class="building-ui-bottom">
+								<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="seabedMineProgressBar"></div></div>
+								<div class="float-right-item"><span id="seabedMineStonePerSec">0</span><span>/sec.</span></div>
+							</div>
+						</div>
+						<div class="buildings-attachments">
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item ">attachment 1</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 2</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 3</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 4</div>
+							</div>
+						</div>
+						
+						
 					</div>
+
+					<div class="ProductionLine">
+							<div class="building-icon">
+								<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 3)" onmouseout="tooltipRemoval(buildingsList, 3)"><img src="img/icon_pumpJack.png"></img><div id="pumpJackFluff" class="tiptext"></div></div>
+								
+								<div class="prodLineItem">
+									<div>Qty: <span id="pumpJackTotalAmount">0</span></div> 
+									<div class="cost">Cost: <span id="pumpJackCost">1000</span></div>
+								</div>
+							</div>
+							<div class="building-ui">
+								<div class="building-ui-top"><h1 id="test-title">Pumpjack</h1></div>
+								<div class="building-ui-middle">
+									<button onClick="buyBuilding('pumpJack', 1)" id="pumpJackButtonBuyOne" disabled="">BUY 1</button>
+									<button onClick="buyBuilding('pumpJack', 5)" id="pumpJackButtonBuyFive" disabled="">5</button>
+									<button onClick="buyBuilding('pumpJack', 25)" id="pumpJackButtonBuyTwentyFive" disabled="">25</button>
+									<button onClick="buyBuilding('pumpJack', checkForMaxPossible(1).buildingsToBuy)" id="pumpJackButtonBuyMax" disabled="">MAX</button>
+								</div>
+								<div class="building-ui-bottom">
+									<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="pumpJackProgressBar"></div></div>
+									<div class="float-right-item"><span id="pumpJackStonePerSec">0</span><span>/sec.</span></div>
+								</div>
+							</div>
+							<div class="buildings-attachments">
+								<div class="buildings-attachments-items">
+									<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+									<div class="float-left-item ">attachment 1</div>
+								</div>
+								<div class="buildings-attachments-items">
+									<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+									<div class="float-left-item">attachment 2</div>
+								</div>
+								<div class="buildings-attachments-items">
+									<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+									<div class="float-left-item">attachment 3</div>
+								</div>
+								<div class="buildings-attachments-items">
+									<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+									<div class="float-left-item">attachment 4</div>
+								</div>
+							</div>
+							
+							
+						</div>
 				</div>
-				<div class="building-ui">
-					<div class="building-ui-top"><h1 id="test-title">Deep Mine</h1></div>
-					<div class="building-ui-middle">
-						<button onClick="buyBuilding('deepStoneMine', 1)" id="deepStoneMineButtonBuyOne" disabled="">BUY 1</button>
-						<button onClick="buyBuilding('deepStoneMine', 5)" id="deepStoneMineButtonBuyFive" disabled="">5</button>
-						<button onClick="buyBuilding('deepStoneMine', 25)" id="deepStoneMineButtonBuyTwentyFive" disabled="">25</button>
-						<button onClick="buyBuilding('deepStoneMine', checkForMaxPossible(1).buildingsToBuy)" id="deepStoneMineButtonBuyMax" disabled="">MAX</button>
-					</div>
-					<div class="building-ui-bottom">
-						<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="deepStoneMineProgressBar"></div></div>
-						<div class="float-right-item"><span id="deepStoneMineStonePerSec">0</span><span>/sec.</span></div>
-					</div>
+				<div class="advanced-buildings">
 				</div>
-				<div class="buildings-attachments">
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item ">attachment 1</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 2</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 3</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 4</div>
-					</div>
-				</div>
-				
-				
 			</div>
-			
-			<div class="ProductionLine">
-				<div class="building-icon">
-					<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 2)" onmouseout="tooltipRemoval(buildingsList, 2)"><img src="img/icon_seabedMine.png"></img><div id="seabedMineFluff" class="tiptext"></div></div>
-					
-					<div class="prodLineItem">
-						<div>Qty: <span id="seabedMineTotalAmount">0</span></div> 
-						<div class="cost">Cost:<span id="seabedMineCost">25 000</span></div>
-					</div>
-				</div>
-				<div class="building-ui">
-					<div class="building-ui-top"><h1 id="seabedMineTitle"></h1></div>
-					<div class="building-ui-middle">
-						<button onClick="buyBuilding('seabedMine', 1)" id="seabedMineButtonBuyOne" disabled="">BUY 1</button>
-						<button onClick="buyBuilding('seabedMine', 5)" id="seabedMineButtonBuyFive" title="" disabled="">5</button>
-						<button onClick="buyBuilding('seabedMine', 25)" id="seabedMineButtonBuyTwentyFive" disabled="">25</button>
-						<button onClick= "buyBuilding('seabedMine', checkForMaxPossible(2).buildingsToBuy)" id="seabedMineButtonBuyMax" disabled="">MAX</button>
-					</div>
-					<div class="building-ui-bottom">
-						<div class="float-left-item progress-bar-frame"><div class="progress-bar" id="seabedMineProgressBar"></div></div>
-						<div class="float-right-item"><span id="seabedMineStonePerSec">0</span><span>/sec.</span></div>
-					</div>
-				</div>
-				<div class="buildings-attachments">
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item ">attachment 1</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 2</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 3</div>
-					</div>
-					<div class="buildings-attachments-items">
-						<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
-						<div class="float-left-item">attachment 4</div>
-					</div>
-				</div>
-				
-				
-			</div>
-			
 		</article>
 		<article id="Research" class="tabContent">
 			<header>
@@ -197,13 +247,13 @@
 				</div>
 			</header>
 			<div>
-				<h2><span>Available research projects</span></h2>
+				<h2>Available research projects</h2>
 			</div>
 			<div class="research-container-flex">
 				<div class="research-knowledge">
-					<h3><span>Knowledge</span></h3>
+					<h3>TIER I</h3>
 					<div class="research-tree-container-flex">
-						<div class="tooltip button-research" id="laboratory-div" onClick="buyResearchKnowledge('laboratory')"><img id="laboratory" src="img/research/icon_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchKnowledgeList, 0)" onmouseout="tooltipRemoval(researchKnowledgeList, 0)"></img><div id="laboratoryFluff" class="tiptext"></div></div>
+						<div class="tooltip button-research" id="laboratory-div" onClick="buyResearchTierOne('laboratory')"><img id="laboratory" src="img/research/icon_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 0)" onmouseout="tooltipRemoval(researchTierOneList, 0)"></img><div id="laboratoryFluff" class="tiptext"></div></div>
 						<div class="button-research"><img src="img/research/icon_researchSpeedI.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
@@ -223,7 +273,7 @@
 				</div>
 				<div><img src="img/research/chalk_line_long_horizontal.png"></img></div>
 				<div class="research-industry">
-					<h3><span>Industry</span></h3>
+					<h3>TIER II</h3>
 					<div class="research-tree-container-flex">
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
@@ -257,7 +307,7 @@
 				<div><img src="img/research/chalk_line_long_horizontal.png"></img></div>
 				<div>
 				
-					<h3><span>Research tree 3</span></h3>
+					<h3>TIER III</h3>
 					<div class="research-tree-container-flex">
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
@@ -271,7 +321,7 @@
 				</div>
 				<div><img src="img/research/chalk_line_long_horizontal.png"></img></div>
 				<div>
-					<h3><span>Research tree 4</span></h3>
+					<h3>TIER IV</h3>
 					<div class="research-tree-container-flex">
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
