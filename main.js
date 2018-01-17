@@ -94,13 +94,38 @@ function stoneClick(number) {
 };
 
 function checkForMaxPossible(itemMax) {		//checks how many buildings of a certain type the player can buy and their cost
-	var tempCostForMaxBuildingsBefore = 0;
-	var tempCostForMaxBuildingsAfter = Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount))
+	var tempCostForMaxBuildingsBefore = {
+		minerals: 0,
+		steel: 0,
+		oil: 0,
+		plastics: 0,
+		circuits: 0,
+		science: 0,
+	};
+	var tempCostForMaxBuildingsAfter = {
+		minerals: Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount)),
+		steel: Math.floor(buildingsList[itemMax].initialCost.steel * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount)),
+		oil: Math.floor(buildingsList[itemMax].initialCost.oil * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount)),
+		plastics: Math.floor(buildingsList[itemMax].initialCost.plastics * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount)),
+		circuits: Math.floor(buildingsList[itemMax].initialCost.circuits * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount)),
+		science: Math.floor(buildingsList[itemMax].initialCost.science * Math.pow(playerState.buildingCostPower, buildingsList[itemMax].totalAmount)),	
+	}
 	var tempTotalAmountOfBuildings = buildingsList[itemMax].totalAmount;
 	var buildingsToBuy = 0;
-	while (tempCostForMaxBuildingsAfter <= currencyList.minerals) {
-		tempCostForMaxBuildingsBefore = tempCostForMaxBuildingsBefore + Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
-		tempCostForMaxBuildingsAfter = tempCostForMaxBuildingsAfter + Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)))
+	while (tempCostForMaxBuildingsAfter.minerals <= currencyList.minerals && tempCostForMaxBuildingsAfter.steel <= currencyList.steel && tempCostForMaxBuildingsAfter.oil <= currencyList.oil && tempCostForMaxBuildingsAfter.plastics <= currencyList.plastics && tempCostForMaxBuildingsAfter.circuits <= currencyList.circuits && tempCostForMaxBuildingsAfter.science <= currencyList.science) {
+		tempCostForMaxBuildingsBefore.minerals = tempCostForMaxBuildingsBefore.minerals + Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+		tempCostForMaxBuildingsBefore.steel = tempCostForMaxBuildingsBefore.steel + Math.floor(buildingsList[itemMax].initialCost.steel * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+		tempCostForMaxBuildingsBefore.oil = tempCostForMaxBuildingsBefore.oil + Math.floor(buildingsList[itemMax].initialCost.oil * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+		tempCostForMaxBuildingsBefore.plastics = tempCostForMaxBuildingsBefore.plastics + Math.floor(buildingsList[itemMax].initialCost.plastics * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+		tempCostForMaxBuildingsBefore.circuits = tempCostForMaxBuildingsBefore.circuits + Math.floor(buildingsList[itemMax].initialCost.circuits * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+		tempCostForMaxBuildingsBefore.science = tempCostForMaxBuildingsBefore.science + Math.floor(buildingsList[itemMax].initialCost.science * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+
+		tempCostForMaxBuildingsAfter.minerals = tempCostForMaxBuildingsAfter.minerals + Math.floor(buildingsList[itemMax].initialCost.minerals * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)));
+		tempCostForMaxBuildingsAfter.steel = tempCostForMaxBuildingsAfter.steel + Math.floor(buildingsList[itemMax].initialCost.steel * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)));
+		tempCostForMaxBuildingsAfter.oil = tempCostForMaxBuildingsAfter.oil + Math.floor(buildingsList[itemMax].initialCost.oil * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)));
+		tempCostForMaxBuildingsAfter.plastics = tempCostForMaxBuildingsAfter.plastics + Math.floor(buildingsList[itemMax].initialCost.plastics * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)));
+		tempCostForMaxBuildingsAfter.circuits = tempCostForMaxBuildingsAfter.circuits + Math.floor(buildingsList[itemMax].initialCost.circuits * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)));
+		tempCostForMaxBuildingsAfter.science = tempCostForMaxBuildingsAfter.science + Math.floor(buildingsList[itemMax].initialCost.science * Math.pow(playerState.buildingCostPower, (tempTotalAmountOfBuildings + 1)));
 		tempTotalAmountOfBuildings++;
 		buildingsToBuy++;
 		
@@ -116,30 +141,66 @@ function pricePredictionForButtonTitle(building, amount) {		//return a value for
 	for (var item = 0; item < buildingsList.length; item++) {
 		if (building == buildingsList[item].codeName) {
 			if (amount == 25) {
-				var tempCostForTwentyFiveBuildings = 0;
+				var tempCostForTwentyFiveBuildings = {
+					minerals: 0,
+					steel: 0,
+					oil: 0,
+					plastics: 0,
+					circuits: 0,
+					science: 0,
+				};
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 25; i++) {
-					tempCostForTwentyFiveBuildings = tempCostForTwentyFiveBuildings + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
+					tempCostForTwentyFiveBuildings.minerals = tempCostForTwentyFiveBuildings.minerals + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForTwentyFiveBuildings.steel = tempCostForTwentyFiveBuildings.steel + Math.floor(buildingsList[item].initialCost.steel * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForTwentyFiveBuildings.oil = tempCostForTwentyFiveBuildings.oil + Math.floor(buildingsList[item].initialCost.oil * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForTwentyFiveBuildings.plastics = tempCostForTwentyFiveBuildings.plastics + Math.floor(buildingsList[item].initialCost.plastics * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForTwentyFiveBuildings.circuits = tempCostForTwentyFiveBuildings.circuits + Math.floor(buildingsList[item].initialCost.circuits * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForTwentyFiveBuildings.science = tempCostForTwentyFiveBuildings.science + Math.floor(buildingsList[item].initialCost.science * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 				}
 				return tempCostForTwentyFiveBuildings
 
 			}
 			if (amount == 5) {
-				var tempCostForFiveBuildings = 0;
+				var tempCostForFiveBuildings = {
+					minerals: 0,
+					steel: 0,
+					oil: 0,
+					plastics: 0,
+					circuits: 0,
+					science: 0,
+				};
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 5; i++) {
-					tempCostForFiveBuildings = tempCostForFiveBuildings + (Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)))
+					tempCostForFiveBuildings.minerals = tempCostForFiveBuildings.minerals + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForFiveBuildings.steel = tempCostForFiveBuildings.steel + Math.floor(buildingsList[item].initialCost.steel * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForFiveBuildings.oil = tempCostForFiveBuildings.oil + Math.floor(buildingsList[item].initialCost.oil * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForFiveBuildings.plastics = tempCostForFiveBuildings.plastics + Math.floor(buildingsList[item].initialCost.plastics * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForFiveBuildings.circuits = tempCostForFiveBuildings.circuits + Math.floor(buildingsList[item].initialCost.circuits * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
+					tempCostForFiveBuildings.science = tempCostForFiveBuildings.science + Math.floor(buildingsList[item].initialCost.science * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings));
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 				}
 				return tempCostForFiveBuildings
 
 			}
 			if (amount == 1) {
-				var tempCostForOneBuilding = 0;
-				tempCostForOneBuilding = Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
+				var tempCostForOneBuilding = {
+					minerals: 0,
+					steel: 0,
+					oil: 0,
+					plastics: 0,
+					circuits: 0,
+					science: 0,
+				};
+				tempCostForOneBuilding.minerals = Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
+				tempCostForOneBuilding.steel = Math.floor(buildingsList[item].initialCost.steel * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
+				tempCostForOneBuilding.oil = Math.floor(buildingsList[item].initialCost.oil * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
+				tempCostForOneBuilding.plastics = Math.floor(buildingsList[item].initialCost.plastics * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
+				tempCostForOneBuilding.circuits = Math.floor(buildingsList[item].initialCost.circuits * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
+				tempCostForOneBuilding.science = Math.floor(buildingsList[item].initialCost.science * Math.pow(playerState.buildingCostPower, buildingsList[item].totalAmount));
 				return tempCostForOneBuilding;
-
+				
 			}
 		}
 	}
@@ -184,11 +245,11 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 			if (amount == 1) {
 				var currentCost = {
 					minerals: Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount)),
-					steel: 0,
-					oil: 0,
-					plastics: 0,
-					circuits: 0,
-					science: 0	
+					steel: Math.floor(buildingsList[item].initialCost.steel * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount)),
+					oil: Math.floor(buildingsList[item].initialCost.oil * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount)),
+					plastics: Math.floor(buildingsList[item].initialCost.plastics * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount)),
+					circuits: Math.floor(buildingsList[item].initialCost.circuits * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount)),
+					science: Math.floor(buildingsList[item].initialCost.science * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount))	
 				     }     //works out the cost of the next building.
 				if (currencyList.minerals >= currentCost.minerals && currencyList.steel >= currentCost.steel && currencyList.oil >= currentCost.oil && currencyList.plastics >= currentCost.plastics && currencyList.circuits >= currentCost.circuits && currencyList.science >= currentCost.science){                                   //checks whether the player can afford the building
 					if (buildingsList[item].totalAmount == 0) {
@@ -201,21 +262,35 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 						})(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 1;                                   //increases number of the building by 1
-					removeSpentResources(currentCost.minerals, currentCost.steel, currentCost.oil, currentCost.plastics, currentCost.circuits, currentCost.science)  //removes minerals spent AND updates the displayed amount of total resources              
+					removeSpentResources(currentCost.minerals, currentCost.steel, currentCost.oil, currentCost.plastics, currentCost.circuits, currentCost.science);  //removes minerals spent AND updates the displayed amount of total resources              
 					document.getElementById(buildingsList[item].codeName + 'TotalAmount').innerHTML = buildingsList[item].totalAmount;  //updates the number of buildings that is displayed
 					
 				}
 			}
 			else if (amount == 5) {
 				// buys 5 buildings
-				var tempCostForFiveBuildings = 0;
+				var tempCostForFiveBuildings = {
+					minerals: 0,
+					steel: 0,
+					oil: 0,
+					plastics: 0,
+					circuits: 0,
+					science: 0
+				};
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 5; i++) {
-					tempCostForFiveBuildings = tempCostForFiveBuildings + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
+					tempCostForFiveBuildings = {
+						minerals: tempCostForFiveBuildings.minerals + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						steel: tempCostForFiveBuildings.steel + Math.floor(buildingsList[item].initialCost.steel * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						oil: tempCostForFiveBuildings.oil + Math.floor(buildingsList[item].initialCost.oil * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						plastics: tempCostForFiveBuildings.plastics + Math.floor(buildingsList[item].initialCost.plastics * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						circuits: tempCostForFiveBuildings.circuits + Math.floor(buildingsList[item].initialCost.circuits * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						science: tempCostForFiveBuildings.science + Math.floor(buildingsList[item].initialCost.science * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
+					}
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 					console.log(tempTotalAmountOfBuildings);	
 				}
-				if (currencyList.minerals >= tempCostForFiveBuildings) {
+				if (currencyList.minerals >= tempCostForFiveBuildings.minerals && currencyList.steel >= tempCostForFiveBuildings.steel && currencyList.oil >= tempCostForFiveBuildings.oil && currencyList.plastics >= tempCostForFiveBuildings.plastics && currencyList.circuits >= tempCostForFiveBuildings.circuits && currencyList.science >= tempCostForFiveBuildings.science) {
 					if (buildingsList[item].totalAmount == 0) {
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
@@ -226,21 +301,36 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 						})(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 5;	//increases the amount of buildings by 5
-					currencyList.minerals = currencyList.minerals - tempCostForFiveBuildings;
+					
+					removeSpentResources(tempCostForFiveBuildings.minerals, tempCostForFiveBuildings.steel, tempCostForFiveBuildings.oil, tempCostForFiveBuildings.plastics, tempCostForFiveBuildings.circuits, tempCostForFiveBuildings.science);
 					document.getElementById(buildingsList[item].codeName + 'TotalAmount').innerHTML = buildingsList[item].totalAmount;	//updates the amount of buildings to be displayed
-					document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);	//updates the amount of stone that is displayed
 				}
 			}
 			
 			else if (amount == 25) {
-				var tempCostForTwentyFiveBuildings = 0;
+				var tempCostForTwentyFiveBuildings = {
+					minerals: 0,
+					steel: 0,
+					oil: 0,
+					plastics: 0,
+					circuits: 0,
+					science: 0
+				};
 				var tempTotalAmountOfBuildings = buildingsList[item].totalAmount;
 				for (i = 0; i < 25; i++) {
-					tempCostForTwentyFiveBuildings = tempCostForTwentyFiveBuildings + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
+					tempCostForTwentyFiveBuildings = {
+						minerals: tempCostForTwentyFiveBuildings.minerals + Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						steel: tempCostForTwentyFiveBuildings.steel + Math.floor(buildingsList[item].initialCost.steel * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						oil: tempCostForTwentyFiveBuildings.oil + Math.floor(buildingsList[item].initialCost.oil * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						plastics: tempCostForTwentyFiveBuildings.plastics + Math.floor(buildingsList[item].initialCost.plastics * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						circuits: tempCostForTwentyFiveBuildings.circuits + Math.floor(buildingsList[item].initialCost.circuits * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings)),
+						science: tempCostForTwentyFiveBuildings.science + Math.floor(buildingsList[item].initialCost.science * Math.pow(playerState.buildingCostPower, tempTotalAmountOfBuildings))
+					}
+					
 					tempTotalAmountOfBuildings = tempTotalAmountOfBuildings + 1
 					console.log(tempTotalAmountOfBuildings);	
 				}
-				if (currencyList.minerals >= tempCostForTwentyFiveBuildings) {
+				if (currencyList.minerals >= tempCostForTwentyFiveBuildings.minerals && currencyList.steel >= tempCostForTwentyFiveBuildings.steel && currencyList.oil >= tempCostForTwentyFiveBuildings.oil && currencyList.plastics >= tempCostForTwentyFiveBuildings.plastics && currencyList.circuits >= tempCostForTwentyFiveBuildings.circuits && currencyList.science >= tempCostForTwentyFiveBuildings.science) {
 					if (buildingsList[item].totalAmount == 0) {
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
@@ -251,16 +341,15 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 						})(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 25;	//increases the amount of buildings by 25
-					currencyList.minerals = currencyList.minerals - tempCostForTwentyFiveBuildings;
+					removeSpentResources(tempCostForTwentyFiveBuildings.minerals, tempCostForTwentyFiveBuildings.steel, tempCostForTwentyFiveBuildings.oil, tempCostForTwentyFiveBuildings.plastics, tempCostForTwentyFiveBuildings.circuits, tempCostForTwentyFiveBuildings.science);
 					document.getElementById(buildingsList[item].codeName + 'TotalAmount').innerHTML = buildingsList[item].totalAmount;	//updates the amount of buildings to be displayed
-					document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);	//updates the amount of stone that is displayed
 				}
 			}
 			
 			else  {
 				// buys maximum possible amount of buildings
 				var maxBuyStuff = checkForMaxPossible(item);
-				if (currencyList.minerals >= maxBuyStuff.priceForBuyMax) {
+				if (currencyList.minerals >= maxBuyStuff.priceForBuyMax.minerals && currencyList.steel >= maxBuyStuff.priceForBuyMax.steel && currencyList.oil >= maxBuyStuff.priceForBuyMax.oil && currencyList.plastics >= maxBuyStuff.priceForBuyMax.plastics && currencyList.circuits >= maxBuyStuff.priceForBuyMax.circuits && currencyList.science >= maxBuyStuff.priceForBuyMax.science) {
 					if (buildingsList[item].totalAmount == 0) {
 						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 						(function(item) {
@@ -272,19 +361,36 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 					}
 					
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + maxBuyStuff.buildingsAmountForBuyMax;
-					currencyList.minerals = currencyList.minerals - maxBuyStuff.priceForBuyMax;
+					removeSpentResources(maxBuyStuff.priceForBuyMax.minerals, maxBuyStuff.priceForBuyMax.steel, maxBuyStuff.priceForBuyMax.oil, maxBuyStuff.priceForBuyMax.plastics, maxBuyStuff.priceForBuyMax.circuits, maxBuyStuff.priceForBuyMax.science);
 					document.getElementById(buildingsList[item].codeName + 'TotalAmount').innerHTML = buildingsList[item].totalAmount;
-					document.getElementById('minerals').innerHTML = abbrNum(currencyList.minerals, 2);
 				}
 			}
-			document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.minerals) / buildingsList[item].tickSpeed * 1000), 2);
+			if ((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.minerals / buildingsList[item].tickSpeed * 1000) > 0) {
+				document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.minerals) / buildingsList[item].tickSpeed * 1000), 2);
+			}
+			else if ((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.steel / buildingsList[item].tickSpeed * 1000) > 0) {
+				document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.steel) / buildingsList[item].tickSpeed * 1000), 2);
+			}
+			else if ((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.oil / buildingsList[item].tickSpeed * 1000) > 0) {
+				document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.oil) / buildingsList[item].tickSpeed * 1000), 2);
+			}
+			else if ((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.plastics / buildingsList[item].tickSpeed * 1000) > 0) {
+				document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.plastics) / buildingsList[item].tickSpeed * 1000), 2);
+			}
+			else if ((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.circuits / buildingsList[item].tickSpeed * 1000) > 0) {
+				document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.circuits) / buildingsList[item].tickSpeed * 1000), 2);
+			}
+			else if ((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.science / buildingsList[item].tickSpeed * 1000) > 0) {
+				document.getElementById(buildingsList[item].codeName + 'StonePerSec').innerHTML = abbrNum(Number((buildingsList[item].totalAmount * buildingsList[item].stuffPerTick.science) / buildingsList[item].tickSpeed * 1000), 2);
+			};
+			
 			//updates the building production per second displayed
 			var nextCost = Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount));       //works out the cost of the next building for the player to see
 			document.getElementById(buildingsList[item].codeName + 'Cost').innerHTML = abbrNum(nextCost, 2);  //updates the building cost to be displayed
 		}
-		document.getElementById(buildingsList[item].codeName + "ButtonBuyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5)), 2));
-		document.getElementById(buildingsList[item].codeName + "ButtonBuyOne").setAttribute("title", "Cost: " +  abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1)), 2));
-		document.getElementById(buildingsList[item].codeName + "ButtonBuyTwentyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25)), 2));
+		document.getElementById(buildingsList[item].codeName + "ButtonBuyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).science), 2) + " science");
+		document.getElementById(buildingsList[item].codeName + "ButtonBuyOne").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).science), 2) + " science");
+		document.getElementById(buildingsList[item].codeName + "ButtonBuyTwentyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).science), 2) + " science");
 		
 	}
 };
@@ -438,19 +544,19 @@ function openTab(evt, tabName) { // Navigation tab logic
 
 window.setInterval(function() {  // checking every 0.2 sec to enable or disable buttons
 	for (var itemButton = 0; itemButton < buildingsList.length; itemButton++) {
-		if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25) <= currencyList.minerals) {
+		if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).minerals <= currencyList.minerals && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).steel <= currencyList.steel && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).oil <= currencyList.oil && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).plastics <= currencyList.plastics && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).circuits <= currencyList.circuits && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).science <= currencyList.science) {
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyTwentyFive").disabled = false;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyFive").disabled = false;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyOne").disabled = false;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").disabled = false;
 		}
-		else if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5) <= currencyList.minerals) {
+		else if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5).minerals <= currencyList.minerals && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5).steel <= currencyList.steel && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5).oil <= currencyList.oil && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5).plastics <= currencyList.plastics && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5).circuits <= currencyList.circuits && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 5).science <= currencyList.science) {
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyFive").disabled = false;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyOne").disabled = false;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyTwentyFive").disabled = true;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").disabled = false;
 		}
-		else if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1) <= currencyList.minerals) {
+		else if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1).minerals <= currencyList.minerals && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1).steel <= currencyList.steel && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1).oil <= currencyList.oil && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1).plastics <= currencyList.plastics && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1).circuits <= currencyList.circuits && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 1).science <= currencyList.science) {
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyOne").disabled = false;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyFive").disabled = true;
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyTwentyFive").disabled = true;
@@ -463,6 +569,6 @@ window.setInterval(function() {  // checking every 0.2 sec to enable or disable 
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").disabled = true;
 		}
 		var maxStuff = checkForMaxPossible(itemButton);
-		document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").setAttribute("title", abbrNum(maxStuff.priceForBuyMax, 2)  + " for " + maxStuff.buildingsAmountForBuyMax + " buildings.")
+		document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").setAttribute("title", abbrNum(maxStuff.priceForBuyMax.minerals, 2) + " minerals" + ", " + abbrNum(maxStuff.priceForBuyMax.steel, 2) + " steel" + ", " + abbrNum(maxStuff.priceForBuyMax.oil, 2) + " oil" + ", " + abbrNum(maxStuff.priceForBuyMax.plastics, 2) + " plastics" + ", " + abbrNum(maxStuff.priceForBuyMax.circuits, 2) + " circuits" + ", " + abbrNum(maxStuff.priceForBuyMax.science, 2) + " science" + " for " + maxStuff.buildingsAmountForBuyMax + " buildings.")
 	}
 }, 200);
