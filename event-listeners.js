@@ -25,3 +25,11 @@ document.getElementById("test-track").addEventListener("mouseup", function(){
 document.getElementById("test-track").addEventListener("mouseout", function(){
     if (timer) clearInterval(timer)
 });
+
+
+document.getElementById("stoneExtractorRaze").addEventListener("click", function(){
+    if (buildingsList[0].totalAmount > 0) {
+        buildingsList[0].totalAmount = buildingsList[0].totalAmount - 1;
+        document.getElementById("stoneExtractorTotalAmount").innerHTML=buildingsList[0].totalAmount;
+    }
+});

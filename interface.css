@@ -92,7 +92,7 @@ nav {
 }
 
 .ProductionLine button {
-	font-size: 115%;
+	font-size: 100%;
 }
 
 .cost {
@@ -145,6 +145,21 @@ nav {
 	opacity: 1;
 }
 
+.insufficient-resources-float {
+	position: absolute;
+	left: 50px;
+	color: red;
+	animation: stretch;
+	animation-duration: 1.3s; 
+	animation-timing-function: ease-out; 
+	animation-delay: 0;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode: none;
+	animation-play-state: running;
+	opacity: 1;
+	display: none;
+}
 .manual-float-value img {
 	max-height: 20px;
 	margin-right: 5px;
@@ -162,6 +177,33 @@ nav {
 
 .building-ui-middle {
 	height: 40px;
+	display: flex;
+	align-content: flex-start;
+}
+
+.building-ui-middle button {
+	max-height: 30px;
+}
+
+.building-ui-middle div {
+	height: 30px;
+	padding: 0px;
+	position: relative;
+	margin: 0px;
+}
+
+button.raze {
+	color: white;
+	background: repeating-linear-gradient(
+		45deg,
+		#bcb360,
+		#bcb360 10px,
+		#2b2c2e 10px,
+		#2b2c2e 20px
+	  );
+	position: relative;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	height: 30px;
 }
 
 .building-ui-bottom {
@@ -185,6 +227,7 @@ nav {
 	height: 25px;
 	border-style: solid;
 	border-width: 1px;
+	position: relative;
 }
 
 .progress-bar {

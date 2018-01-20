@@ -66,6 +66,7 @@
 								<button onClick="buyBuilding('stoneExtractor', 5)" id="stoneExtractorButtonBuyFive" disabled="">5</button>
 								<button onClick="buyBuilding('stoneExtractor', 25)" id="stoneExtractorButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick= "buyBuilding('stoneExtractor', checkForMaxPossible(0).buildingsToBuy)" id="stoneExtractorButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="stoneExtractorRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
 								<div class="progress-bar-frame"><div class="progress-bar" id="stoneExtractorProgressBar"></div></div>
@@ -110,6 +111,7 @@
 								<button onClick="buyBuilding('deepStoneMine', 5)" id="deepStoneMineButtonBuyFive" disabled="">5</button>
 								<button onClick="buyBuilding('deepStoneMine', 25)" id="deepStoneMineButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick="buyBuilding('deepStoneMine', checkForMaxPossible(1).buildingsToBuy)" id="deepStoneMineButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="deepMineRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
 								<div class="progress-bar-frame"><div class="progress-bar" id="deepStoneMineProgressBar"></div></div>
@@ -154,6 +156,7 @@
 								<button onClick="buyBuilding('seabedMine', 5)" id="seabedMineButtonBuyFive" title="" disabled="">5</button>
 								<button onClick="buyBuilding('seabedMine', 25)" id="seabedMineButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick= "buyBuilding('seabedMine', checkForMaxPossible(2).buildingsToBuy)" id="seabedMineButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="seabedMineRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
 								<div class="progress-bar-frame"><div class="progress-bar" id="seabedMineProgressBar"></div></div>
@@ -198,6 +201,7 @@
 								<button onClick="buyBuilding('pumpJack', 5)" id="pumpJackButtonBuyFive" disabled="">5</button>
 								<button onClick="buyBuilding('pumpJack', 25)" id="pumpJackButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick="buyBuilding('pumpJack', checkForMaxPossible(3).buildingsToBuy)" id="pumpJackButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="pumpJackRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
 								<div class="progress-bar-frame"><div class="progress-bar" id="pumpJackProgressBar"></div></div>
@@ -241,6 +245,7 @@
 								<button onClick="buyBuilding('laboratory', 5)" id="laboratoryButtonBuyFive" disabled="">5</button>
 								<button onClick="buyBuilding('laboratory', 25)" id="laboratoryButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick="buyBuilding('laboratory', checkForMaxPossible(4).buildingsToBuy)" id="laboratoryButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="laboratoryRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
 								<div class="progress-bar-frame"><div class="progress-bar" id="laboratoryProgressBar"></div></div>
@@ -282,9 +287,10 @@
 								<button onClick="buyBuilding('steelMill', 5)" id="steelMillButtonBuyFive" disabled="">5</button>
 								<button onClick="buyBuilding('steelMill', 25)" id="steelMillButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick="buyBuilding('steelMill', checkForMaxPossible(5).buildingsToBuy)" id="steelMillButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="steelMillRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
-								<div class="progress-bar-frame"><div class="progress-bar" id="steelMillProgressBar"></div></div>
+								<div class="progress-bar-frame"><div class="insufficient-resources-float" id="insufficient-minerals">Not enough minerals!</div><div class="progress-bar" id="steelMillProgressBar"></div></div>
 								<div><img src="img/icon_steel.png" /><span id="steelMillStonePerSec">0</span><span>/sec.</span></div>
 							</div>
 						</div>
@@ -323,9 +329,10 @@
 								<button onClick="buyBuilding('chemicalPlant', 5)" id="chemicalPlantButtonBuyFive" disabled="">5</button>
 								<button onClick="buyBuilding('chemicalPlant', 25)" id="chemicalPlantButtonBuyTwentyFive" disabled="">25</button>
 								<button onClick="buyBuilding('chemicalPlant', checkForMaxPossible(6).buildingsToBuy)" id="chemicalPlantButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="chemicalPlantRaze">Raze</button></div>
 							</div>
 							<div class="building-ui-bottom">
-								<div class="progress-bar-frame"><div class="progress-bar" id="chemicalPlantProgressBar"></div></div>
+								<div class="progress-bar-frame"><div class="insufficient-resources-float" id="insufficient-oil">Not enough oil!</div><div class="progress-bar" id="chemicalPlantProgressBar"></div></div>
 								<div><img src="img/icon_plastics.png" /><span id="chemicalPlantStonePerSec">0</span><span>/sec.</span></div>
 							</div>
 						</div>
@@ -348,6 +355,48 @@
 							</div>
 						</div>
 					</div>	<!-- end of Chemical Plant building card  -->
+					<div class="ProductionLine">	<!-- Electronics Plant building card  -->
+						<div class="building-icon">
+							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 7)" onmouseout="tooltipRemoval(buildingsList, 7)"><img src="img/icon_bdg_circuits.png"></img><div id="electronicsPlantFluff" class="tiptext"></div></div>
+							
+							<div class="prodLineItem">
+								<div>Qty: <span id="electronicsPlantTotalAmount">0</span></div> 
+								<div class="cost">Cost: <span id="electronicsPlantCost">TBD</span></div>
+							</div>
+						</div>
+						<div class="building-ui">
+							<div class="building-ui-top"><h1 id="test-title">Electronics Plant</h1></div>
+							<div class="building-ui-middle">
+								<button onClick="buyBuilding('electronicsPlant', 1)" id="electronicsPlantButtonBuyOne" disabled="">BUY 1</button>
+								<button onClick="buyBuilding('electronicsPlant', 5)" id="electronicsPlantButtonBuyFive" disabled="">5</button>
+								<button onClick="buyBuilding('electronicsPlant', 25)" id="electronicsPlantButtonBuyTwentyFive" disabled="">25</button>
+								<button onClick="buyBuilding('electronicsPlant', checkForMaxPossible(7).buildingsToBuy)" id="electronicsPlantButtonBuyMax" disabled="">MAX</button>
+								<div><button class="raze" id="electronicsPlantRaze">Raze</button></div>
+							</div>
+							<div class="building-ui-bottom">
+								<div class="progress-bar-frame"><div class="insufficient-resources-float" id="insufficient-resources">Not enough resources!</div><div class="progress-bar" id="electronicsPlantProgressBar"></div></div>
+								<div><img src="img/icon_circuit.png" /><span id="electronicsPlantStonePerSec">0</span><span>/sec.</span></div>
+							</div>
+						</div>
+						<div class="buildings-attachments">
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item ">attachment 1</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 2</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 3</div>
+							</div>
+							<div class="buildings-attachments-items">
+								<div class="float-left-item attachment-image"><img src="img/icon_cog.png"></img></div>
+								<div class="float-left-item">attachment 4</div>
+							</div>
+						</div>
+					</div>	<!-- end of Electronics Plant card -->
 				</div>	<!-- end of advanced buildings container tag  -->
 			</div>	<!-- end of building container tag  -->
 		</article>
@@ -476,10 +525,10 @@
 		
 		</article>
 		<div class="devTools">
-				<button onClick="cheat5000()" id="cheat">CHEAT (5000 minerals)</button>
-				<button onClick="resetStones()" id="reset">RESET STONE AMOUNT</button>
+				<button onClick="cheat5000()" id="cheat">+5K ALL</button>
+				<button onClick="resetStones()" id="reset">RESET ALL</button>
 				<button onClick="cheatScience()" id="cheat-science">ADD 5000 SCIENCE</button>
-				<button onClick="cheatQi()" id="cheat">CHEAT (5Qi minerals)</button>
+				<button onClick="cheatQi()" id="cheat">+5Qi ALL</button>
 		</div>
 	</section>
 	<script>
