@@ -11,6 +11,15 @@ var playerState = {
 	buildingCostPower: 1.1
 }
 
+var intervalStoneExtractor;
+var intervalDeepMine;
+var intervalSeabedMine;
+var intervalPumpJack;
+var intervalLaboratory;
+var intervalSteelMill;
+var intervalChemicalPlant;
+var intervalElectronicsPlant;
+
 
 function abbrNum(number, decPlaces) { 		//abbreviates numbers for display, courtesy of Jeff B (https://stackoverflow.com/users/179216/jeff-b0)
     // 2 decimal places => 100, 3 => 1000, etc
@@ -55,10 +64,6 @@ function abbrNum(number, decPlaces) { 		//abbreviates numbers for display, court
 }
 
 
-var tempItem = undefined;
-var stoneTest= 0;
-var science = 0;
-var basicResearchSpeed = 1000;
 
 function tooltipCreation(list, item) {
 	if (list == buildingsList) {
@@ -77,15 +82,6 @@ function tooltipRemoval(list, item) {
 	else if (list == researchTierOneList){
 		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "";
 	}
-}
-
-function hoverMineBarCreation(list, item) {
-	doc
-}
-
-function researchSpeed() {
-	var bonusLevelI = researchTierOneList[0].level * researchTierOneList[0].levelBonus;
-	return basicResearchSpeed + (bonusLevelI * basicResearchSpeed);
 }
 
 function stoneClick(number) {
@@ -253,13 +249,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 				     }     //works out the cost of the next building.
 				if (currencyList.minerals >= currentCost.minerals && currencyList.steel >= currentCost.steel && currencyList.oil >= currentCost.oil && currencyList.plastics >= currentCost.plastics && currencyList.circuits >= currentCost.circuits && currencyList.science >= currentCost.science){                                   //checks whether the player can afford the building
 					if (buildingsList[item].totalAmount == 0) {
-						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-						(function(item) {
-							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
-								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-							}, buildingsList[item].tickSpeed);
-						})(item);
+						initiateInterval(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 1;                                   //increases number of the building by 1
 					removeSpentResources(currentCost.minerals, currentCost.steel, currentCost.oil, currentCost.plastics, currentCost.circuits, currentCost.science);  //removes minerals spent AND updates the displayed amount of total resources              
@@ -292,13 +282,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 				}
 				if (currencyList.minerals >= tempCostForFiveBuildings.minerals && currencyList.steel >= tempCostForFiveBuildings.steel && currencyList.oil >= tempCostForFiveBuildings.oil && currencyList.plastics >= tempCostForFiveBuildings.plastics && currencyList.circuits >= tempCostForFiveBuildings.circuits && currencyList.science >= tempCostForFiveBuildings.science) {
 					if (buildingsList[item].totalAmount == 0) {
-						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-						(function(item) {
-							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);		
-								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-							}, buildingsList[item].tickSpeed);
-						})(item);
+						initiateInterval(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 5;	//increases the amount of buildings by 5
 					
@@ -332,13 +316,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 				}
 				if (currencyList.minerals >= tempCostForTwentyFiveBuildings.minerals && currencyList.steel >= tempCostForTwentyFiveBuildings.steel && currencyList.oil >= tempCostForTwentyFiveBuildings.oil && currencyList.plastics >= tempCostForTwentyFiveBuildings.plastics && currencyList.circuits >= tempCostForTwentyFiveBuildings.circuits && currencyList.science >= tempCostForTwentyFiveBuildings.science) {
 					if (buildingsList[item].totalAmount == 0) {
-						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-						(function(item) {
-							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
-								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-							}, buildingsList[item].tickSpeed);
-						})(item);
+						initiateInterval(item);
 					}
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + 25;	//increases the amount of buildings by 25
 					removeSpentResources(tempCostForTwentyFiveBuildings.minerals, tempCostForTwentyFiveBuildings.steel, tempCostForTwentyFiveBuildings.oil, tempCostForTwentyFiveBuildings.plastics, tempCostForTwentyFiveBuildings.circuits, tempCostForTwentyFiveBuildings.science);
@@ -351,13 +329,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 				var maxBuyStuff = checkForMaxPossible(item);
 				if (currencyList.minerals >= maxBuyStuff.priceForBuyMax.minerals && currencyList.steel >= maxBuyStuff.priceForBuyMax.steel && currencyList.oil >= maxBuyStuff.priceForBuyMax.oil && currencyList.plastics >= maxBuyStuff.priceForBuyMax.plastics && currencyList.circuits >= maxBuyStuff.priceForBuyMax.circuits && currencyList.science >= maxBuyStuff.priceForBuyMax.science) {
 					if (buildingsList[item].totalAmount == 0) {
-						fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-						(function(item) {
-							window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
-								intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
-								fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
-							}, buildingsList[item].tickSpeed);
-						})(item);
+						initiateInterval(item);
 					}
 					
 					buildingsList[item].totalAmount = buildingsList[item].totalAmount + maxBuyStuff.buildingsAmountForBuyMax;
@@ -388,10 +360,7 @@ function buyBuilding(building, amount){ // used to increase the amount of buildi
 			var nextCost = Math.floor(buildingsList[item].initialCost.minerals * Math.pow(playerState.buildingCostPower,buildingsList[item].totalAmount));       //works out the cost of the next building for the player to see
 			document.getElementById(buildingsList[item].codeName + 'Cost').innerHTML = abbrNum(nextCost, 2);  //updates the building cost to be displayed
 		}
-		document.getElementById(buildingsList[item].codeName + "ButtonBuyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).science), 2) + " science");
-		document.getElementById(buildingsList[item].codeName + "ButtonBuyOne").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).science), 2) + " science");
-		document.getElementById(buildingsList[item].codeName + "ButtonBuyTwentyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).science), 2) + " science");
-		
+		updateButtonTitles(item);
 	}
 };
 
@@ -402,6 +371,7 @@ function fillProgressBar(building, tickLength) {
 	var id = setInterval(frame, (tickLength / 100));
 	function frame() {
 		if (width >= 100) {
+			elem.style.width = "0%";
 			clearInterval(id);
 		}
 		else {
@@ -605,6 +575,66 @@ function openTab(evt, tabName) { // Navigation tab logic
     evt.currentTarget.className += " active";
 }
 
+function updateButtonTitles(item) {		// updates button titles for all production buildings, takes in the array number to determine which building from buildingsList it should process
+	document.getElementById(buildingsList[item].codeName + "ButtonBuyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 5).science), 2) + " science");
+	document.getElementById(buildingsList[item].codeName + "ButtonBuyOne").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 1).science), 2) + " science");
+	document.getElementById(buildingsList[item].codeName + "ButtonBuyTwentyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).science), 2) + " science");
+}
+
+function initiateInterval(item) {		// initiates the resorce generation intervals
+	fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+	(function(item) {
+		if (buildingsList[item].codeName == "stoneExtractor") {
+			intervalStoneExtractor = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "deepStoneMine") {
+			intervalDeepMine = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "seabedMine") {
+			intervalSeabedMine = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "pumpJack") {
+			intervalPumpJack = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "laboratory") {
+			intervalLaboratory = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "steelMill") {
+			intervalSteelMill = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "chemicalPlant") {
+			intervalChemicalPlant = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		};
+		if (buildingsList[item].codeName == "electronicsPlant") {
+			intervalElectronicsPlant = window.setInterval(function() {	//fills the progress bar and adds produced resource for the building every tickSpeed/1000 seconds 
+				intervalAddResources(buildingsList[item].stuffPerTick.minerals * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.steel * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.oil * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.plastics * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.circuits * buildingsList[item].totalAmount, buildingsList[item].stuffPerTick.science * buildingsList[item].totalAmount, item);
+				fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
+			}, buildingsList[item].tickSpeed);
+		}
+	})(item);
+}
+
 window.setInterval(function() {  // checking every 0.2 sec to enable or disable buttons
 	for (var itemButton = 0; itemButton < buildingsList.length; itemButton++) {
 		if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).minerals <= currencyList.minerals && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).steel <= currencyList.steel && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).oil <= currencyList.oil && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).plastics <= currencyList.plastics && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).circuits <= currencyList.circuits && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).science <= currencyList.science) {
@@ -632,6 +662,6 @@ window.setInterval(function() {  // checking every 0.2 sec to enable or disable 
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").disabled = true;
 		}
 		var maxStuff = checkForMaxPossible(itemButton);
-		document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").setAttribute("title", abbrNum(maxStuff.priceForBuyMax.minerals, 2) + " minerals" + ", " + abbrNum(maxStuff.priceForBuyMax.steel, 2) + " steel" + ", " + abbrNum(maxStuff.priceForBuyMax.oil, 2) + " oil" + ", " + abbrNum(maxStuff.priceForBuyMax.plastics, 2) + " plastics" + ", " + abbrNum(maxStuff.priceForBuyMax.circuits, 2) + " circuits" + ", " + abbrNum(maxStuff.priceForBuyMax.science, 2) + " science" + " for " + maxStuff.buildingsAmountForBuyMax + " buildings.")
+		document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").setAttribute("title", abbrNum(maxStuff.priceForBuyMax.minerals, 2) + " minerals" + ", " + abbrNum(maxStuff.priceForBuyMax.steel, 2) + " steel" + ", " + abbrNum(maxStuff.priceForBuyMax.oil, 2) + " oil" + ", " + abbrNum(maxStuff.priceForBuyMax.plastics, 2) + " plastics" + ", " + abbrNum(maxStuff.priceForBuyMax.circuits, 2) + " circuits" + ", " + abbrNum(maxStuff.priceForBuyMax.science, 2) + " science" + " for " + maxStuff.buildingsAmountForBuyMax + " buildings.");
 	}
 }, 200);
