@@ -13,7 +13,7 @@
 	<nav>
 		<div class="tab">
 			<button class="tablinks" onclick="openTab(event, 'Production')" id="defaultOpen">Production</button>
-			<button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
+			<button class="tablinks" onclick="openTab(event, 'Research')"><span id="tab-research">Research</span></button>
 			<button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
 		</div>
 		<div class="resource-display">
@@ -46,7 +46,7 @@
 			</div>
 			<div class="buildings-container">
 				<div class="basic-buildings">
-					<div class="ProductionLine">
+					<div class="ProductionLine" id="card-quarry" style="display:none">
 						<div class="building-icon">
 							<div class="tooltip production-icon" onmouseover="tooltipCreation(buildingsList, 0)" onmouseout="tooltipRemoval(buildingsList, 0)">
 								<div id="test-track"><img src="img/icon_stoneExtractor.png"></img></div>
@@ -95,7 +95,7 @@
 						
 					</div>
 					
-					<div class="ProductionLine">
+					<div class="ProductionLine" id="card-deep-stone-mine" style="display:none">
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 1)" onmouseout="tooltipRemoval(buildingsList, 1)"><img src="img/icon_deepStonemine.png"></img><div id="deepStoneMineFluff" class="tiptext"></div></div>
 							
@@ -140,7 +140,7 @@
 						
 					</div>
 					
-					<div class="ProductionLine">
+					<div class="ProductionLine" id="card-seabed-mine" style="display:none">
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 2)" onmouseout="tooltipRemoval(buildingsList, 2)"><img src="img/icon_seabedMine.png"></img><div id="seabedMineFluff" class="tiptext"></div></div>
 							
@@ -185,7 +185,7 @@
 						
 					</div>
 
-					<div class="ProductionLine">
+					<div class="ProductionLine" card="card-pumpJack" style="display:none">
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 3)" onmouseout="tooltipRemoval(buildingsList, 3)"><img src="img/icon_pumpJack.png"></img><div id="pumpJackFluff" class="tiptext"></div></div>
 							
@@ -229,7 +229,7 @@
 					</div>
 				</div>
 				<div class="advanced-buildings">
-					<div class="ProductionLine">
+					<div class="ProductionLine" id="card-laboratory" style="display:none">
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 4)" onmouseout="tooltipRemoval(buildingsList, 4)"><img src="img/icon_bdg_lab.png"></img><div id="laboratoryFluff" class="tiptext"></div></div>
 							
@@ -271,7 +271,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ProductionLine">	<!-- Steel Mill building card  -->
+					<div class="ProductionLine" id="card-steel-mill" style="display:none">	<!-- Steel Mill building card  -->
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 5)" onmouseout="tooltipRemoval(buildingsList, 5)"><img src="img/icon_bdg_steel.png"></img><div id="steelMillFluff" class="tiptext"></div></div>
 							
@@ -313,7 +313,7 @@
 							</div>
 						</div>
 					</div>	<!-- end of Steel Mill building card  -->
-					<div class="ProductionLine">	<!-- Chemical Plant building card  -->
+					<div class="ProductionLine" id="card-chemical-plant" style="display:none">	<!-- Chemical Plant building card  -->
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 6)" onmouseout="tooltipRemoval(buildingsList, 6)"><img src="img/icon_bdg_plastics.png"></img><div id="chemicalPlantFluff" class="tiptext"></div></div>
 							
@@ -355,7 +355,7 @@
 							</div>
 						</div>
 					</div>	<!-- end of Chemical Plant building card  -->
-					<div class="ProductionLine">	<!-- Electronics Plant building card  -->
+					<div class="ProductionLine" id="card-electronics-plant" style="display:none">	<!-- Electronics Plant building card  -->
 						<div class="building-icon">
 							<div class="tooltip" onmouseover="tooltipCreation(buildingsList, 7)" onmouseout="tooltipRemoval(buildingsList, 7)"><img src="img/icon_bdg_circuits.png"></img><div id="electronicsPlantFluff" class="tiptext"></div></div>
 							
@@ -423,7 +423,7 @@
 				<div class="research-knowledge">
 					<h3>TIER I</h3>
 					<div class="research-tree-container-flex">
-						<div class="tooltip button-research" id="laboratory-div" onClick="buyResearchTierOne('laboratory')"><img id="laboratory" src="img/research/icon_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 0)" onmouseout="tooltipRemoval(researchTierOneList, 0)"></img><div id="res_laboratoryFluff" class="tiptext"></div></div>
+						<div class="tooltip button-research" id="res_laboratory-div" onClick="buyResearchTierOne('res_laboratory')"><img id="res_laboratory" src="img/research/icon_res_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 0)" onmouseout="tooltipRemoval(researchTierOneList, 0)"></img><div id="res_laboratoryFluff" class="tiptext"></div></div>
 						<div class="button-research"><img src="img/research/icon_researchSpeedI.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>

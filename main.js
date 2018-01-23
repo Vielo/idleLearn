@@ -87,6 +87,9 @@ function tooltipRemoval(list, item) {
 function stoneClick(number) {
 	currencyList.minerals = currencyList.minerals + number;
 	document.getElementById("minerals").innerHTML = abbrNum(currencyList.minerals, 2);
+	if (currencyList.minerals > 10 && document.getElementById("card-quarry").style.display == "none") {
+		document.getElementById("card-quarry").style.display = "flex";
+	}
 };
 
 function checkForMaxPossible(itemMax) {		//checks how many buildings of a certain type the player can buy and their cost
@@ -202,11 +205,36 @@ function pricePredictionForButtonTitle(building, amount) {		//return a value for
 	}
 }
 
+function unlockNewBuilding(research) {
+	if (research == "res_laboratory" && document.getElementById("card-laboratory").style.display == "none") {
+		document.getElementById("card-laboratory").style.display="flex";
+	}
+	if (research == "res_oil_extraction" && document.getElementById("card-pumpJack").style.display == "none") {
+		document.getElementById("card-pumpJack").style.display="flex";
+	}
+	if (research == "res_deep_mining" && document.getElementById("card-deep-styone-mine").style.display == "none") {
+		document.getElementById("card-deep-stone-mine").style.display="flex";
+	}
+	if (research == "res_underwater_mining" && document.getElementById("card-seabed-mine").style.display == "none") {
+		document.getElementById("card-seabed-mine").style.display="flex";
+	}
+	if (research == "res_steel" && document.getElementById("card-steel-mill").style.display == "none") {
+		document.getElementById("card-steel-mill").style.display="flex";
+	}
+	if (research == "res_plastics" && document.getElementById("card-chemical-plant").style.display == "none") {
+		document.getElementById("card-chemical-plant").style.display="flex";
+	}
+	if (research == "res_circuits" && document.getElementById("card-electronics-plant").style.display == "none") {
+		document.getElementById("card-electronics-plant").style.display="flex";
+	}
+}
+
 function buyResearchTierOne(research){	// used to start and process all the research projects in the game
 	for (var item = 0; item < researchTierOneList.length; item++) {
 		if (research == researchTierOneList[item].codeName) {
 			if (currencyList.science > researchTierOneList[item].cost) {
 				currencyList.science = currencyList.science - researchTierOneList[item].cost;
+				document.getElementById("tab-research").className="";
 				document.getElementById(researchTierOneList[item].codeName + "-div").removeAttribute("onClick");
 				document.getElementById("science").innerHTML=currencyList.science;
 				document.getElementById("science-progress").setAttribute("max", researchTierOneList[item].duration);
@@ -228,6 +256,8 @@ function buyResearchTierOne(research){	// used to start and process all the rese
 						document.getElementById(tempResearch.codeName + "-div").setAttribute("style", "order: 2");
 						document.getElementById(tempResearch.codeName + "-div").setAttribute("class", "research-completed tooltip");
 						document.getElementById(tempResearch.codeName + "-div").removeAttribute("onClick");
+						document.getElementById("tab-research").className="glowing-research";
+						unlockNewBuilding(research);
 					}, researchTierOneList[item].duration);
 				})(item);
 			}

@@ -29,6 +29,12 @@ nav {
 	margin-bottom: 0px;
 }
 
+.glowing-research {
+	-webkit-animation: neon5 1.5s ease-in-out infinite alternate;
+	-moz-animation: neon5 1.5s ease-in-out infinite alternate;
+	animation: neon5 1.5s ease-in-out infinite alternate;
+}
+
 .resource-display {
 	position: relative;
 	display: flex;
@@ -282,7 +288,7 @@ button.raze {
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+	background-color: #f1f1f1;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -295,6 +301,8 @@ button.raze {
     padding: 14px 16px;
     transition: 0.3s;
 	font-size: 1.5em;
+	font-family: 'Cabin Condensed', sans-serif;
+	text-transform: uppercase;
 }
 
 
@@ -374,3 +382,30 @@ button.raze {
 	  transition: opacity 1s ease-in;
 	}
 }
+
+@-webkit-keyframes neon5 {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #B6FF00, 0 0 70px #B6FF00, 0 0 80px #B6FF00, 0 0 100px #B6FF00, 0 0 150px #B6FF00;
+	  }
+	  to {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 75px #B6FF00;
+	  }
+	}
+
+  @-moz-keyframes neon5 {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #B6FF00, 0 0 70px #B6FF00, 0 0 80px #B6FF00, 0 0 100px #B6FF00, 0 0 150px #B6FF00;
+	  }
+	  to {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 75px #B6FF00;
+	  }
+	}
+
+  @keyframes neon5 {
+	from {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 70px #B6FF00;
+	  }
+	  to {
+		text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 8px #fff, 0 0 10px #B6FF00, 0 0 18px #B6FF00, 0 0 20px #B6FF00, 0 0 25px #B6FF00, 0 0 38px #B6FF00;
+	  }
+	}
