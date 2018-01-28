@@ -256,6 +256,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', end
 	 left: 35px;
 	 bottom: 25px;
  }
+
+ .postit-image-container:nth-child(2) {
+	 left: 130px;
+	 bottom: -10px;
+ }
  
 .postit:after {     
    content: "";

@@ -6,7 +6,61 @@ var researchTierOneList = [
 		codeName: 'res_laboratory',
 		fluffText: 'Making your employees do research during breaks and after hours is good and all, but you cannot expect them to match qualified scientists. Research this to begin your journey towards the Rockier Future.',
 		icon: 'img/research/icon_res_laboratory.png',
-		duration: 6000 // 60 seconds
+		duration: 6000 // 6 seconds
+	},
+	pumpJack = {
+		name: "Oil extraction",
+		cost: 1000,
+		unlocked: false,
+		codeName: 'res_oil_extraction',
+		fluffText: 'Unlocks oil extraction.',
+		icon: 'img/research/icon_res_laboratory.png',
+		duration: 8000 // 8 seconds
+	},
+	deepMine = {
+		name: "Deep mining",
+		cost: 500,
+		unlocked: false,
+		codeName: 'res_deep_mining',
+		fluffText: 'Unlocks deep mining.',
+		icon: 'img/research/icon_res_laboratory.png',
+		duration: 10000 // 10 seconds
+	},
+	seabedMine = {
+		name: "Underwater mining",
+		cost: 5000,
+		unlocked: false,
+		codeName: 'res_underwater_mining',
+		fluffText: 'Unlocks underwater mining.',
+		icon: 'img/research/icon_res_laboratory.png',
+		duration: 12000 // 12 seconds
+	},
+	steelMill = {
+		name: "Steel smelting",
+		cost: 10000,
+		unlocked: false,
+		codeName: 'res_steel',
+		fluffText: 'Unlocks steel smelters.',
+		icon: 'img/research/icon_res_laboratory.png',
+		duration: 20000 // 20 seconds
+	},
+	chemicalPlant = {
+		name: "Plastics",
+		cost: 10000,
+		unlocked: false,
+		codeName: 'res_plastics',
+		fluffText: 'Unlocks plastics production.',
+		icon: 'img/research/icon_res_laboratory.png',
+		duration: 10000 // 10 seconds
+	},
+	electronicsPlant = {
+		name: "Circuits",
+		cost: 10000,
+		unlocked: false,
+		codeName: 'res_circuits',
+		fluffText: 'Unlocks circuit production.',
+		icon: 'img/research/icon_res_laboratory.png',
+		duration: 10000 // 10 seconds
 	},
 	researchSpeedI = {
 		name: "Research Speed I",
@@ -20,5 +74,3 @@ var researchTierOneList = [
 		duration: 120000 // 120 seconds
 	}
 ]
-
-//more: res_oil_extraction (enables pumpjacks), res_deep_mining (allows deep mines), res_underwater_mining (enables seabed mines), res_steel (enables steel mills), res_plastics (enables chemical plants), res_circuits (enables electronics plants)

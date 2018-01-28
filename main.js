@@ -248,9 +248,7 @@ function buyResearchTierOne(research){	// used to start and process all the rese
 					setTimeout(function() {
 						tempResearch = researchTierOneList[item];
 						tempResearch.unlocked = true;
-						tempResearch.icon = 'img/research/icon_' + tempResearch.codeName + '_unlocked.png';
-						document.getElementById("research-current-image").setAttribute("src", tempResearch.icon);
-						document.getElementById(tempResearch.codeName).setAttribute("src", tempResearch.icon);
+						document.getElementById("research-completed-mark").setAttribute("style", "visibility:visible");
 						document.getElementById("current-research-title").innerHTML="Finished research: ";
 						document.getElementById("current-research-title").setAttribute("class", "current-research-animated chalk-underline");
 						document.getElementById(tempResearch.codeName + "-div").setAttribute("style", "order: 2");
