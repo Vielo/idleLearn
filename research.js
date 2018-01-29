@@ -14,7 +14,7 @@ var researchTierOneList = [
 		unlocked: false,
 		codeName: 'res_oil_extraction',
 		fluffText: 'Unlocks oil extraction.',
-		icon: 'img/research/icon_res_laboratory.png',
+		icon: 'img/icon_pumpjack.png',
 		duration: 8000 // 8 seconds
 	},
 	deepMine = {
@@ -23,17 +23,8 @@ var researchTierOneList = [
 		unlocked: false,
 		codeName: 'res_deep_mining',
 		fluffText: 'Unlocks deep mining.',
-		icon: 'img/research/icon_res_laboratory.png',
+		icon: 'img/icon_deepStoneMine.png',
 		duration: 10000 // 10 seconds
-	},
-	seabedMine = {
-		name: "Underwater mining",
-		cost: 5000,
-		unlocked: false,
-		codeName: 'res_underwater_mining',
-		fluffText: 'Unlocks underwater mining.',
-		icon: 'img/research/icon_res_laboratory.png',
-		duration: 12000 // 12 seconds
 	},
 	steelMill = {
 		name: "Steel smelting",
@@ -41,7 +32,7 @@ var researchTierOneList = [
 		unlocked: false,
 		codeName: 'res_steel',
 		fluffText: 'Unlocks steel smelters.',
-		icon: 'img/research/icon_res_laboratory.png',
+		icon: 'img/icon_bdg_steel.png',
 		duration: 20000 // 20 seconds
 	},
 	chemicalPlant = {
@@ -50,8 +41,17 @@ var researchTierOneList = [
 		unlocked: false,
 		codeName: 'res_plastics',
 		fluffText: 'Unlocks plastics production.',
-		icon: 'img/research/icon_res_laboratory.png',
+		icon: 'img/icon_bdg_plastics.png',
 		duration: 10000 // 10 seconds
+	},
+	seabedMine = {
+		name: "Underwater mining",
+		cost: 5000,
+		unlocked: false,
+		codeName: 'res_underwater_mining',
+		fluffText: 'Unlocks underwater mining.',
+		icon: 'img/icon_seabedMine.png',
+		duration: 12000 // 12 seconds
 	},
 	electronicsPlant = {
 		name: "Circuits",
@@ -59,7 +59,7 @@ var researchTierOneList = [
 		unlocked: false,
 		codeName: 'res_circuits',
 		fluffText: 'Unlocks circuit production.',
-		icon: 'img/research/icon_res_laboratory.png',
+		icon: 'img/icon_bdg_circuits.png',
 		duration: 10000 // 10 seconds
 	},
 	researchSpeedI = {

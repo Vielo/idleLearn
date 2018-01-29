@@ -212,7 +212,7 @@ function unlockNewBuilding(research) {
 	if (research == "res_oil_extraction" && document.getElementById("card-pumpJack").style.display == "none") {
 		document.getElementById("card-pumpJack").style.display="flex";
 	}
-	if (research == "res_deep_mining" && document.getElementById("card-deep-styone-mine").style.display == "none") {
+	if (research == "res_deep_mining" && document.getElementById("card-deep-stone-mine").style.display == "none") {
 		document.getElementById("card-deep-stone-mine").style.display="flex";
 	}
 	if (research == "res_underwater_mining" && document.getElementById("card-seabed-mine").style.display == "none") {
@@ -228,13 +228,18 @@ function unlockNewBuilding(research) {
 		document.getElementById("card-electronics-plant").style.display="flex";
 	}
 }
-
+var proceedIfTrue = true;		// switches between false and true to make sure the user cannot start multiple pieces of research simultaneously
 function buyResearchTierOne(research){	// used to start and process all the research projects in the game
 	for (var item = 0; item < researchTierOneList.length; item++) {
 		if (research == researchTierOneList[item].codeName) {
-			if (currencyList.science > researchTierOneList[item].cost) {
+			if (currencyList.science > researchTierOneList[item].cost && proceedIfTrue == true) {
+				proceedIfTrue = false;
 				currencyList.science = currencyList.science - researchTierOneList[item].cost;
 				document.getElementById("tab-research").className="";
+				document.getElementById("current-research-title").setAttribute("class", "chalk-underline");
+				document.getElementById("research-completed-mark").setAttribute("style", "visibility:hidden");
+				/* Removes the completed research indicators */
+
 				document.getElementById(researchTierOneList[item].codeName + "-div").removeAttribute("onClick");
 				document.getElementById("science").innerHTML=currencyList.science;
 				document.getElementById("science-progress").setAttribute("max", researchTierOneList[item].duration);
@@ -256,6 +261,7 @@ function buyResearchTierOne(research){	// used to start and process all the rese
 						document.getElementById(tempResearch.codeName + "-div").removeAttribute("onClick");
 						document.getElementById("tab-research").className="glowing-research";
 						unlockNewBuilding(research);
+						proceedIfTrue = true;
 					}, researchTierOneList[item].duration);
 				})(item);
 			}
