@@ -7,6 +7,15 @@ var currencyList = {
 	science: 0,
 };
 
+var currenciesPerSec = {
+	minerals: 0,
+	steel: 0,
+	oil: 0,
+	plastics: 0,
+	circuits: 0,
+	science: 0,
+};
+
 var playerState = {
 	buildingCostPower: 1.1
 }
@@ -67,7 +76,27 @@ function abbrNum(number, decPlaces) { 		//abbreviates numbers for display, court
 
 function tooltipCreation(list, item) {
 	if (list == buildingsList) {
-		document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = buildingsList[item].fluffText;
+		if (list[item].stuffPerTick.minerals > 0) {
+			document.getElementById(list[item].codeName + "Fluff").innerHTML = "Each " + list[item].name + " produces " + "<strong>" + list[item].stuffPerTick.minerals + " minerals</strong> every " + "<strong>" + list[item].tickSpeed / 1000 + " seconds.</strong>" + "<p>You have " + list[item].totalAmount + " " + list[item].namePlural + " producing " + abbrNum((list[item].stuffPerTick.minerals * list[item].totalAmount), 2) + " minerals every " + list[item].tickSpeed / 1000 + " seconds, which translates to " + abbrNum((list[item].stuffPerTick.minerals * list[item].totalAmount) / list[item].tickSpeed * 1000, 2) + "/s and constitutes " + Math.round((((list[item].stuffPerTick.minerals * list[item].totalAmount) / list[item].tickSpeed * 1000) / currenciesPerSec.minerals) * 100) + "% of your total minerals production.</p>" + "<p><em>" + list[item].fluffText + "</em></p>";
+		}
+		if (list[item].stuffPerTick.oil > 0) {
+			document.getElementById(list[item].codeName + "Fluff").innerHTML = "Each " + list[item].name + " produces " + "<strong>" + list[item].stuffPerTick.oil + " oil</strong> every " + "<strong>" + list[item].tickSpeed / 1000 + " seconds.</strong>" + "<p>You have " + list[item].totalAmount + " " + list[item].namePlural + " producing " + abbrNum((list[item].stuffPerTick.oil * list[item].totalAmount), 2) + " oil every " + list[item].tickSpeed / 1000 + " seconds, which translates to " + abbrNum((list[item].stuffPerTick.oil * list[item].totalAmount) / list[item].tickSpeed * 1000, 2) + "/s." + "<p><em>" + list[item].fluffText + "</em></p>"
+		}
+		if (list[item].stuffPerTick.science > 0) {
+			document.getElementById(list[item].codeName + "Fluff").innerHTML = "Each " + list[item].name + " produces " + "<strong>" + list[item].stuffPerTick.science + " science</strong> every " + "<strong>" + list[item].tickSpeed / 1000 + " seconds.</strong>" + "<p>You have " + list[item].totalAmount + " " + list[item].namePlural + " producing " + abbrNum((list[item].stuffPerTick.science * list[item].totalAmount), 2) + " science every " + list[item].tickSpeed / 1000 + " seconds, which translates to " + abbrNum((list[item].stuffPerTick.science * list[item].totalAmount) / list[item].tickSpeed * 1000, 2) + "/s." + "<p><em>" + list[item].fluffText + "</em></p>"
+		}
+		if (list[item].stuffPerTick.steel > 0) {
+			document.getElementById(list[item].codeName + "Fluff").innerHTML = "Each " + list[item].name + " uses " + list[item].consumptionPerTick.minerals + " minerals" + " to produce " + "<strong>" + list[item].stuffPerTick.steel + " steel</strong> every " + "<strong>" + list[item].tickSpeed / 1000 + " seconds.</strong>" + "<p>You have " + list[item].totalAmount + " " + list[item].namePlural + " consuming " + abbrNum((list[item].consumptionPerTick.minerals * list[item].totalAmount), 2) + " minerals " + " to produce " + abbrNum((list[item].stuffPerTick.steel * list[item].totalAmount), 2) + " steel every " + list[item].tickSpeed / 1000 + " seconds, which translates to " + abbrNum((list[item].stuffPerTick.steel * list[item].totalAmount) / list[item].tickSpeed * 1000, 2) + "/s." + "<p><em>" + list[item].fluffText + "</em></p>"
+		}
+		if (list[item].stuffPerTick.plastics > 0) {
+			document.getElementById(list[item].codeName + "Fluff").innerHTML = "Each " + list[item].name + " uses " + list[item].consumptionPerTick.oil + " oil" + " to produce " + "<strong>" + list[item].stuffPerTick.plastics + " plastics</strong> every " + "<strong>" + list[item].tickSpeed / 1000 + " seconds.</strong>" + "<p>You have " + list[item].totalAmount + " " + list[item].namePlural + " consuming " + abbrNum((list[item].consumptionPerTick.oil * list[item].totalAmount), 2) + " oil " + "to produce " + abbrNum((list[item].stuffPerTick.plastics * list[item].totalAmount), 2) + " plastics every " + list[item].tickSpeed / 1000 + " seconds, which translates to " + abbrNum((list[item].stuffPerTick.plastics * list[item].totalAmount) / list[item].tickSpeed * 1000, 2) + "/s." + "<p><em>" + list[item].fluffText + "</em></p>"
+		}
+		if (list[item].stuffPerTick.circuits > 0) {
+			document.getElementById(list[item].codeName + "Fluff").innerHTML = "Each " + list[item].name + " uses " + list[item].consumptionPerTick.minerals + " minerals, " + list[item].consumptionPerTick.steel + " steel " + "and " + list[item].consumptionPerTick.plastics + " plastics" + " to produce " + "<strong>" + list[item].stuffPerTick.circuits + " circuits</strong> every " + "<strong>" + list[item].tickSpeed / 1000 + " seconds.</strong>" + "<p>You have " + list[item].totalAmount + " " + list[item].namePlural + " consuming " + abbrNum((list[item].consumptionPerTick.minerals * list[item].totalAmount), 2) + " minerals, " + abbrNum((list[item].consumptionPerTick.steel * list[item].totalAmount), 2) + " steel" + " and " + abbrNum((list[item].consumptionPerTick.plastics * list[item].totalAmount), 2) + " plastics" + " to produce " + abbrNum((list[item].stuffPerTick.circuits * list[item].totalAmount), 2) + " circuits every " + list[item].tickSpeed / 1000 + " seconds, which translates to " + abbrNum((list[item].stuffPerTick.circuits * list[item].totalAmount) / list[item].tickSpeed * 1000, 2) + "/s." + "<p><em>" + list[item].fluffText + "</em></p>"
+		}
+		
+		
+		
 	}
 	else if (list == researchTierOneList) {
 		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "<h1>" + researchTierOneList[item].name + "</h1>" + researchTierOneList[item].fluffText;
@@ -232,7 +261,7 @@ var proceedIfTrue = true;		// switches between false and true to make sure the u
 function buyResearchTierOne(research){	// used to start and process all the research projects in the game
 	for (var item = 0; item < researchTierOneList.length; item++) {
 		if (research == researchTierOneList[item].codeName) {
-			if (currencyList.science > researchTierOneList[item].cost && proceedIfTrue == true) {
+			if (currencyList.science >= researchTierOneList[item].cost && proceedIfTrue == true) {
 				proceedIfTrue = false;
 				currencyList.science = currencyList.science - researchTierOneList[item].cost;
 				document.getElementById("tab-research").className="";
@@ -241,7 +270,7 @@ function buyResearchTierOne(research){	// used to start and process all the rese
 				/* Removes the completed research indicators */
 
 				document.getElementById(researchTierOneList[item].codeName + "-div").removeAttribute("onClick");
-				document.getElementById("science").innerHTML=currencyList.science;
+				document.getElementById("science").innerHTML= abbrNum(currencyList.science, 2);
 				document.getElementById("science-progress").setAttribute("max", researchTierOneList[item].duration);
 				document.getElementById("science-progress").setAttribute("value", 0)
 				document.getElementById("current-research-name").innerHTML=researchTierOneList[item].name;
@@ -669,7 +698,7 @@ function initiateInterval(item) {		// initiates the resorce generation intervals
 	})(item);
 }
 
-window.setInterval(function() {  // checking every 0.2 sec to enable or disable buttons
+window.setInterval(function() {  // checking every 0.3 sec to enable or disable buttons
 	for (var itemButton = 0; itemButton < buildingsList.length; itemButton++) {
 		if (pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).minerals <= currencyList.minerals && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).steel <= currencyList.steel && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).oil <= currencyList.oil && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).plastics <= currencyList.plastics && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).circuits <= currencyList.circuits && pricePredictionForButtonTitle(buildingsList[itemButton].codeName, 25).science <= currencyList.science) {
 			document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyTwentyFive").disabled = false;
@@ -698,4 +727,11 @@ window.setInterval(function() {  // checking every 0.2 sec to enable or disable 
 		var maxStuff = checkForMaxPossible(itemButton);
 		document.getElementById(buildingsList[itemButton].codeName + "ButtonBuyMax").setAttribute("title", abbrNum(maxStuff.priceForBuyMax.minerals, 2) + " minerals" + ", " + abbrNum(maxStuff.priceForBuyMax.steel, 2) + " steel" + ", " + abbrNum(maxStuff.priceForBuyMax.oil, 2) + " oil" + ", " + abbrNum(maxStuff.priceForBuyMax.plastics, 2) + " plastics" + ", " + abbrNum(maxStuff.priceForBuyMax.circuits, 2) + " circuits" + ", " + abbrNum(maxStuff.priceForBuyMax.science, 2) + " science" + " for " + maxStuff.buildingsAmountForBuyMax + " buildings.");
 	}
-}, 200);
+	//* Counts the resource-per-sec for all resources so that it can be used further to know if there is a deficiency or what is the share of specific resource generation buildings in total production *//
+	currenciesPerSec.minerals = ((buildingsList[0].stuffPerTick.minerals * buildingsList[0].totalAmount) / buildingsList[0].tickSpeed * 1000) + ((buildingsList[1].stuffPerTick.minerals * buildingsList[1].totalAmount) / buildingsList[1].tickSpeed * 1000) + ((buildingsList[2].stuffPerTick.minerals * buildingsList[2].totalAmount) / buildingsList[2].tickSpeed * 1000);
+	currenciesPerSec.oil = (buildingsList[3].stuffPerTick.oil * buildingsList[3].totalAmount) / buildingsList[3].tickSpeed * 1000;
+	currenciesPerSec.science = (buildingsList[4].stuffPerTick.science * buildingsList[4].totalAmount) / buildingsList[4].tickSpeed * 1000;
+	currenciesPerSec.steel = (buildingsList[5].stuffPerTick.steel * buildingsList[5].totalAmount) / buildingsList[5].tickSpeed * 1000;
+	currenciesPerSec.plastics = (buildingsList[6].stuffPerTick.plastics * buildingsList[6].totalAmount) / buildingsList[6].tickSpeed * 1000;
+	currenciesPerSec.circuits = (buildingsList[7].stuffPerTick.circuits * buildingsList[7].totalAmount) / buildingsList[7].tickSpeed * 1000;
+}, 300);

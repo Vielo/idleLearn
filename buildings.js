@@ -59,7 +59,7 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Every Deep Stone Mine will automatically produce 20 stone per second.</p><p>Upgradeable.</p><p>The deep stone deposits are safe from wind and atmospheric erosion, making them a very valuable resource.</p>"	,
+		fluffText: "The deep stone deposits are safe from wind and atmospheric erosion, making them a very valuable resource.",
 		totalAmount: 0,
 		codeName: "deepStoneMine",
 		tickSpeed: 8000
@@ -92,7 +92,7 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Every Seabed Mine will automatically produce 500 stone per second.</p><p>Seabed rock and mineral deposits have endured unimaginable pressures for aeons. They are compressed beyond measure.</p>",
+		fluffText: "Seabed rock and mineral deposits have endured unimaginable pressures for aeons. They are compressed beyond measure.",
 		totalAmount: 0,
 		codeName: "seabedMine",
 		tickSpeed: 15000
@@ -125,7 +125,7 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Every Seabed Mine will automatically produce 500 stone per second.</p><p>Seabed rock and mineral deposits have endured unimaginable pressures for aeons. They are compressed beyond measure.</p>",
+		fluffText: "Oil is love, oil is life.",
 		totalAmount: 0,
 		codeName: "pumpJack",
 		tickSpeed: 7500,
@@ -157,7 +157,7 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Each Laboratory will automatically produce 50 science every 10 seconds.</p><p>Laboratories are awesome!</p>",
+		fluffText: "Laboratories are awesome!",
 		totalAmount: 0,
 		codeName: "laboratory",
 		tickSpeed: 10000
@@ -189,7 +189,7 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Each Steel Mill will automatically produce 500 steel every 5 seconds.</p><p>Need to rework the functions to allow for resource conversion so that the Steel Mill will consume Minerals to produce Steel, and in the future add an energy dependency!</p>",
+		fluffText: "Steel is amazing (and in a future revision it will fuel the basis of your combat capabilities!).",
 		totalAmount: 0,
 		codeName: "steelMill",
 		tickSpeed: 5000
@@ -221,12 +221,12 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Each Chemical Plant will automatically produce 100 Plastics every 3 seconds.</p><p>Need to rework the functions to allow for resource conversion so that the Chemical Plant will consume Oil (possibly also some Minerals?) to produce Plastics, and in the future add an energy dependency!</p>",
+		fluffText: "Plastic is amazing.",
 		totalAmount: 0,
 		codeName: "chemicalPlant",
 		tickSpeed: 3000
 	},
-	chemicalPlant = {
+	electronicsPlant = {
 		name: "Electronics Plant",
 		namePlural: "Electronics Plants",
 		initialCost: {
@@ -253,7 +253,7 @@ var buildingsList = [
 			circuits: 0,
 			science: 0
 		},
-		fluffText: "<p>Each Electronics Plant will automatically produce 100 Circuits every 3 seconds.</p><p>Need to rework the functions to allow for resource conversion so that the Chemical Plant will consume Oil (possibly also some Minerals?) to produce Plastics, and in the future add an energy dependency!</p>",
+		fluffText: "The ultimate resource (at least for now). Make sure you can provide enough stuff!",
 		totalAmount: 0,
 		codeName: "electronicsPlant",
 		tickSpeed: 3000
