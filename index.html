@@ -18,7 +18,11 @@
 		</div>
 		<div class="resource-display">
 			<div id="display-minerals">
-				<img src="img/icon_mineral.png"></img><span id="minerals">0</span>
+				<img src="img/icon_mineral.png"></img>
+				<div class="tooltip" onmouseover="tooltipCreation('resourceTooltips', 'minerals')" onmouseout="tooltipRemoval('resourceTooltips', 'minerals')">
+					<span id="minerals">0</span>
+					<div id="minerals-tooltip" class="tiptext"></div>
+				</div>
 			</div>
 			<div id="display-steel">
 				<img src="img/icon_steel.png"></img><span id="steel">0</span>

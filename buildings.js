@@ -1,5 +1,5 @@
 var buildingsList = [
-	stoneExtractor = {
+	stoneExtractor = {		//index 0
 		name: "Quarry",
 		namePlural: "Quarries",
 		initialCost: {
@@ -32,7 +32,7 @@ var buildingsList = [
 		tickSpeed: 3500
 	},
 
-	deepStoneMine = {
+	deepStoneMine = {		// index 1
 		name: "Deep Stone Mine",
 		namePlural: "Deep Stone Mines",
 		initialCost: {
@@ -65,7 +65,7 @@ var buildingsList = [
 		tickSpeed: 8000
 	},
 	
-	seabedMine = {
+	seabedMine = {		// index 2
 		name: "Seabed Mine",
 		namePlural: "Seabed Mines",
 		initialCost: {
@@ -98,7 +98,7 @@ var buildingsList = [
 		tickSpeed: 15000
 	},
 
-	pumpJack = {
+	pumpJack = {		// index 3
 		name: "Pumpjack",
 		namePlural: "Pumpjacks",
 		initialCost: {
@@ -130,7 +130,7 @@ var buildingsList = [
 		codeName: "pumpJack",
 		tickSpeed: 7500,
 	},
-	laboratory = {
+	laboratory = {		// index 4
 		name: "Laboratory",
 		namePlural: "Laboratories",
 		initialCost: {
@@ -162,7 +162,7 @@ var buildingsList = [
 		codeName: "laboratory",
 		tickSpeed: 10000
 	},
-	steelMill = {
+	steelMill = {		// index 5
 		name: "Steel Mill",
 		namePlural: "Steel Mills",
 		initialCost: {
@@ -194,7 +194,7 @@ var buildingsList = [
 		codeName: "steelMill",
 		tickSpeed: 5000
 	},
-	chemicalPlant = {
+	chemicalPlant = {		// index 6
 		name: "Chemical Plant",
 		namePlural: "Chemical Plants",
 		initialCost: {
@@ -226,7 +226,7 @@ var buildingsList = [
 		codeName: "chemicalPlant",
 		tickSpeed: 3000
 	},
-	electronicsPlant = {
+	electronicsPlant = {		// index 7
 		name: "Electronics Plant",
 		namePlural: "Electronics Plants",
 		initialCost: {

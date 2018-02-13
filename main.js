@@ -16,6 +16,15 @@ var currenciesPerSec = {
 	science: 0,
 };
 
+var consumptionPerSec = {
+	minerals: 0,
+	steel: 0,
+	oil: 0,
+	plastics: 0,
+	circuits: 0,
+	science: 0
+}
+
 var playerState = {
 	buildingCostPower: 1.1
 }
@@ -98,6 +107,18 @@ function tooltipCreation(list, item) {
 		
 		
 	}
+	if (list == "resourceTooltips") {
+		if (item == "minerals") {
+			if (buildingsList[5].totalAmount > 0) {
+				document.getElementById("minerals-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.minerals - consumptionPerSec.minerals), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.minerals, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.minerals, 2) + "/s</p>"
+			}
+			else {
+				document.getElementById("minerals-tooltip").innerHTML = "Some crap here.";
+			}
+			
+		}
+	}
+
 	else if (list == researchTierOneList) {
 		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "<h1>" + researchTierOneList[item].name + "</h1>" + researchTierOneList[item].fluffText;
 	}
@@ -588,7 +609,7 @@ function resetStones(){
 
 function cheat5000() {
 	currencyList.minerals = currencyList.minerals + 5000;
-	currencyList.steel = currencyList.minerals + 5000;
+	currencyList.steel = currencyList.steel + 5000;
 	currencyList.oil = currencyList.oil + 5000;
 	currencyList.plastics = currencyList.plastics + 5000;
 	currencyList.circuits = currencyList.circuits + 5000;
@@ -601,7 +622,7 @@ function cheat5000() {
 
 function cheatQi() {
 	currencyList.minerals = currencyList.minerals + 5000000000000000000;
-	currencyList.steel = currencyList.minerals + 5000000000000000000;
+	currencyList.steel = currencyList.steel + 5000000000000000000;
 	currencyList.oil = currencyList.oil + 5000000000000000000;
 	currencyList.plastics = currencyList.plastics + 5000000000000000000;
 	currencyList.circuits = currencyList.circuits + 5000000000000000000;
@@ -734,4 +755,9 @@ window.setInterval(function() {  // checking every 0.3 sec to enable or disable 
 	currenciesPerSec.steel = (buildingsList[5].stuffPerTick.steel * buildingsList[5].totalAmount) / buildingsList[5].tickSpeed * 1000;
 	currenciesPerSec.plastics = (buildingsList[6].stuffPerTick.plastics * buildingsList[6].totalAmount) / buildingsList[6].tickSpeed * 1000;
 	currenciesPerSec.circuits = (buildingsList[7].stuffPerTick.circuits * buildingsList[7].totalAmount) / buildingsList[7].tickSpeed * 1000;
+
+	consumptionPerSec.minerals = ((buildingsList[5].consumptionPerTick.minerals * buildingsList[5].totalAmount) / buildingsList[5].tickSpeed * 1000) + ((buildingsList[7].consumptionPerTick.minerals * buildingsList[7].totalAmount) / buildingsList[7].tickSpeed * 1000);
+	consumptionPerSec.oil = (buildingsList[6].consumptionPerTick.oil + buildingsList[6].totalAmount) / buildingsList[6].tickSpeed * 1000;
+	consumptionPerSec.steel = (buildingsList[7].consumptionPerTick.steel * buildingsList[7].totalAmount) / buildingsList[7].tickSpeed * 1000;
+	consumptionPerSec.plastics = (buildingsList[7].consumptionPerTick.plastics * buildingsList[7].totalAmount) / buildingsList[7].tickSpeed * 1000;
 }, 300);
