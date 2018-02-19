@@ -25,19 +25,39 @@
 				</div>
 			</div>
 			<div id="display-steel">
-				<img src="img/icon_steel.png"></img><span id="steel">0</span>
+				<img src="img/icon_steel.png"></img>
+				<div class="tooltip" onmouseover="tooltipCreation('resourceTooltips', 'steel')" onmouseout="tooltipRemoval('resourceTooltips', 'steel')">
+					<span id="steel">0</span>
+					<div id="steel-tooltip" class="tiptext"></div>
+				</div>
 			</div>
 			<div id="display-oil">
-				<img src="img/icon_oil.png"></img><span id="oil">0</span>
+				<img src="img/icon_oil.png"></img>
+				<div class="tooltip" onmouseover="tooltipCreation('resourceTooltips', 'oil')" onmouseout="tooltipRemoval('resourceTooltips', 'oil')">
+					<span id="oil">0</span>
+					<div id="oil-tooltip" class="tiptext"></div>
+				</div>
 			</div>
 			<div id="display-plastics">
-					<img src="img/icon_plastics.png"></img><span id="plastics">0</span>
+				<img src="img/icon_plastics.png"></img>
+				<div class="tooltip" onmouseover="tooltipCreation('resourceTooltips', 'plastics')" onmouseout="tooltipRemoval('resourceTooltips', 'plastics')">
+					<span id="plastics">0</span>
+					<div id="plastics-tooltip" class="tiptext"></div>
+				</div>
 			</div>
 			<div id="display-circuits">
-				<img src="img/icon_circuit.png"></img><span id="circuits">0</span>
+				<img src="img/icon_circuit.png"></img>
+				<div class="tooltip" onmouseover="tooltipCreation('resourceTooltips', 'circuits')" onmouseout="tooltipRemoval('resourceTooltips', 'circuits')">
+					<span id="circuits">0</span>
+					<div id="circuits-tooltip" class="tiptext"></div>
+				</div>
 			</div>
 			<div id="display-science">
-				<img src="img/icon_science.png"></img><span id="science">0</span>
+				<img src="img/icon_science.png"></img>
+				<div class="tooltip" onmouseover="tooltipCreation('resourceTooltips', 'science')" onmouseout="tooltipRemoval('resourceTooltips', 'science')">
+					<span id="science">0</span>
+					<div id="science-tooltip" class="tiptext"></div>
+				</div>
 			</div> 
 		</div>
 		
@@ -429,7 +449,9 @@
 					<h3>TIER I</h3>
 					<div class="research-tree-container-flex">
 						<div class="tooltip button-research" id="res_laboratory-div" onClick="buyResearchTierOne('res_laboratory')"><img id="res_laboratory" src="img/research/icon_res_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 0)" onmouseout="tooltipRemoval(researchTierOneList, 0)"></img><div id="res_laboratoryFluff" class="tiptext"></div></div>
-						<div class="button-research"><img src="img/research/icon_researchSpeedI.png" class="research-icon"></img></div>
+						<div class="tooltip button-research" id="res_researchSpeedI-div" onClick="buyResearchTierOne('res_researchSpeedI')"><img src="img/research/icon_researchSpeedI.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 7)" onmouseout="tooltipRemoval(researchTierOneList, 7)"></img><div id="res_researchSpeedIFluff" class="tiptext"></div></div>
+
+
 						<div class="tooltip button-research" id="res_oil_extraction-div" onClick="buyResearchTierOne('res_oil_extraction')"><img id="res_oil_extraction" src="img/icon_pumpjack.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 1)" onmouseout="tooltipRemoval(researchTierOneList, 1)"></img><div id="res_oil_extractionFluff" class="tiptext"></div></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>

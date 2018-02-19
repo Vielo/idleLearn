@@ -1,14 +1,14 @@
 var researchTierOneList = [
-	laboratory = {
+	laboratory = {		// index 0
 		name: "Laboratory",
-		cost: 100,
+		cost: 0,
 		unlocked: false,
 		codeName: 'res_laboratory',
-		fluffText: 'Making your employees do research during breaks and after hours is good and all, but you cannot expect them to match qualified scientists. Research this to begin your journey towards the Rockier Future.',
+		fluffText: 'Unlocks the Laboratory building which generates research.',
 		icon: 'img/research/icon_res_laboratory.png',
 		duration: 6000 // 6 seconds
 	},
-	pumpJack = {
+	pumpJack = {		// index 1
 		name: "Oil extraction",
 		cost: 1000,
 		unlocked: false,
@@ -17,7 +17,7 @@ var researchTierOneList = [
 		icon: 'img/icon_pumpjack.png',
 		duration: 8000 // 8 seconds
 	},
-	deepMine = {
+	deepMine = {		// index 2
 		name: "Deep mining",
 		cost: 500,
 		unlocked: false,
@@ -26,7 +26,7 @@ var researchTierOneList = [
 		icon: 'img/icon_deepStoneMine.png',
 		duration: 10000 // 10 seconds
 	},
-	steelMill = {
+	steelMill = {		// index 3
 		name: "Steel smelting",
 		cost: 10000,
 		unlocked: false,
@@ -35,7 +35,7 @@ var researchTierOneList = [
 		icon: 'img/icon_bdg_steel.png',
 		duration: 20000 // 20 seconds
 	},
-	chemicalPlant = {
+	chemicalPlant = {		// index 4
 		name: "Plastics",
 		cost: 10000,
 		unlocked: false,
@@ -44,7 +44,7 @@ var researchTierOneList = [
 		icon: 'img/icon_bdg_plastics.png',
 		duration: 10000 // 10 seconds
 	},
-	seabedMine = {
+	seabedMine = {		// index 5
 		name: "Underwater mining",
 		cost: 5000,
 		unlocked: false,
@@ -53,7 +53,7 @@ var researchTierOneList = [
 		icon: 'img/icon_seabedMine.png',
 		duration: 12000 // 12 seconds
 	},
-	electronicsPlant = {
+	electronicsPlant = {		// index 6
 		name: "Circuits",
 		cost: 10000,
 		unlocked: false,
@@ -62,7 +62,7 @@ var researchTierOneList = [
 		icon: 'img/icon_bdg_circuits.png',
 		duration: 10000 // 10 seconds
 	},
-	researchSpeedI = {
+	researchSpeedI = {		// index 7
 		name: "Research Speed I",
 		cost: 500,
 		unlocked: false,
@@ -71,6 +71,6 @@ var researchTierOneList = [
 		codeName: 'res_researchSpeedI',
 		fluffText: 'Provides further training to your scientists, allowing them to make progress more swiftly.',
 		icon: 'img/research/icon_researchSpeedI.png',
-		duration: 120000 // 120 seconds
+		duration: 12000 // 12 seconds
 	}
 ]

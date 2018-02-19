@@ -10,6 +10,16 @@ article#Research {
 	color: white;
 }
 
+article#Research div.tiptext {
+	font-family: 'Cabin Condensed', sans-serif;
+}
+
+article#Research div.tiptext h1 {
+	font-size: 25px;
+	color: white;
+	text-decoration: none;
+}
+
 article#Research h1 {
 	margin: 0;
 	font-size: 35px;
@@ -121,6 +131,13 @@ img.research-icon {
 	max-width: 40px;
 	max-height: 40px;
 	padding: 3px;
+}
+
+img.absolute-mark {
+	position: absolute;
+	left: -20px;
+	top: 10px;
+	max-width: 14px;
 }
 
 .research-current-image-container {

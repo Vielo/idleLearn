@@ -26,7 +26,8 @@ var consumptionPerSec = {
 }
 
 var playerState = {
-	buildingCostPower: 1.1
+	buildingCostPower: 1.1,
+	researchPower: 1000,
 }
 
 var intervalStoneExtractor;
@@ -109,18 +110,57 @@ function tooltipCreation(list, item) {
 	}
 	if (list == "resourceTooltips") {
 		if (item == "minerals") {
-			if (buildingsList[5].totalAmount > 0) {
+			if (buildingsList[0].totalAmount > 0) {
 				document.getElementById("minerals-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.minerals - consumptionPerSec.minerals), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.minerals, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.minerals, 2) + "/s</p>"
+			}			
+			else {
+				document.getElementById("minerals-tooltip").innerHTML = "Some mineral crap here.";
+			}
+		}
+		else if (item == "steel") {
+			if (buildingsList[5].totalAmount > 0) {
+				document.getElementById("steel-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.steel - consumptionPerSec.steel), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.steel, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.steel, 2) + "/s</p>"
 			}
 			else {
-				document.getElementById("minerals-tooltip").innerHTML = "Some crap here.";
+				document.getElementById("steel-tooltip").innerHTML = "Some steel crap here.";
 			}
-			
+		}
+		else if (item == "oil") {
+			if (buildingsList[3].totalAmount > 0) {
+				document.getElementById("oil-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.oil - consumptionPerSec.oil), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.oil, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.oil, 2) + "/s</p>"
+			}
+			else {
+				document.getElementById("oil-tooltip").innerHTML = "Some oil crap here.";
+			}
+		}
+		else if (item == "science") {
+			if (buildingsList[4].totalAmount > 0) {
+				document.getElementById("science-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.science - consumptionPerSec.science), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.science, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.science, 2) + "/s</p>"
+			}
+			else {
+				document.getElementById("science-tooltip").innerHTML = "Some science crap here.";
+			}
+		}
+		else if (item == "plastics") {
+			if (buildingsList[6].totalAmount > 0) {
+				document.getElementById("plastics-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.plastics - consumptionPerSec.plastics), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.plastics, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.plastics, 2) + "/s</p>"
+			}
+			else {
+				document.getElementById("plastics-tooltip").innerHTML = "Some plastic crap here.";
+			}
+		}
+		else if (item == "circuits") {
+			if (buildingsList[7].totalAmount > 0) {
+				document.getElementById("circuits-tooltip").innerHTML = "<p>Current: " + abbrNum((currenciesPerSec.circuits - consumptionPerSec.circuits), 2) + "/s</p>" + "<p>Production: +" + abbrNum(currenciesPerSec.circuits, 2) + "/s</p>" + "<p>Consumption: -" + abbrNum(consumptionPerSec.circuits, 2) + "/s</p>"
+			}
+			else {
+				document.getElementById("circuits-tooltip").innerHTML = "Some plastic crap here.";
+			}
 		}
 	}
 
 	else if (list == researchTierOneList) {
-		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "<h1>" + researchTierOneList[item].name + "</h1>" + researchTierOneList[item].fluffText;
+		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "<h1>" + researchTierOneList[item].name + "</h1>" + "<p>" + researchTierOneList[item].fluffText + "</p>" + "<p>" + abbrNum(researchTierOneList[item].cost, 2) + " science " + " | " + " " + remainingTimeTransformation(researchTierOneList[item].duration / (playerState.researchPower / 1000)) + "</p>";
 	}
 	
 }
@@ -278,7 +318,17 @@ function unlockNewBuilding(research) {
 		document.getElementById("card-electronics-plant").style.display="flex";
 	}
 }
+
+function unlockResearchBonus(research) {
+	if (research == "res_researchSpeedI") {
+		playerState.researchPower = playerState.researchPower * 1.2;
+		console.log("new research power is " + playerState.researchPower);
+		researchTierOneList[7].unlocked = true;
+	}
+}
+
 var proceedIfTrue = true;		// switches between false and true to make sure the user cannot start multiple pieces of research simultaneously
+
 function buyResearchTierOne(research){	// used to start and process all the research projects in the game
 	for (var item = 0; item < researchTierOneList.length; item++) {
 		if (research == researchTierOneList[item].codeName) {
@@ -311,8 +361,9 @@ function buyResearchTierOne(research){	// used to start and process all the rese
 						document.getElementById(tempResearch.codeName + "-div").removeAttribute("onClick");
 						document.getElementById("tab-research").className="glowing-research";
 						unlockNewBuilding(research);
+						unlockResearchBonus(research);
 						proceedIfTrue = true;
-					}, researchTierOneList[item].duration);
+					}, researchTierOneList[item].duration / (playerState.researchPower / 1000));
 				})(item);
 			}
 		}
@@ -491,9 +542,15 @@ function fillResearchProgressBar(duration) {	//fills the research progress bar
 			clearInterval(id);
 		}
 		else {
-			tempValue = tempValue + 1000;
+			tempValue = tempValue + playerState.researchPower;
 			elem.setAttribute("value", tempValue);
-			document.getElementById("research-time-left").innerHTML = (remainingTimeTransformation(tempMax - tempValue));
+			if (tempValue > tempMax) {
+				document.getElementById("research-time-left").innerHTML = (remainingTimeTransformation(0));
+			}
+			else {
+				document.getElementById("research-time-left").innerHTML = (remainingTimeTransformation(tempMax - tempValue));
+			}
+			console.log("research-to-gather: " + tempMax + " | " + " this tick: + " + playerState.researchPower + ", total: " + tempValue);
 			
 		}
 	
