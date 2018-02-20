@@ -67,10 +67,21 @@ var researchTierOneList = [
 		cost: 500,
 		unlocked: false,
 		level: 0,
-		levelBonus: 0.2,
+		levelBonus: 1.2,
 		codeName: 'res_researchSpeedI',
 		fluffText: 'Provides further training to your scientists, allowing them to make progress more swiftly.',
 		icon: 'img/research/icon_researchSpeedI.png',
 		duration: 12000 // 12 seconds
+	},
+	quarryI = {		// index 8
+		name: "Quarry Efficiency I",
+		cost: 7500,
+		unlocked: false,
+		level: 1,
+		levelBonus: 1.5,
+		codeName: 'res_quarryI',
+		fluffText: 'Improves the mineral output of Quarries by 50%.',
+		icon: 'img/icon_stoneExtractor.png',
+		duration: 7000 // 7 seconds
 	}
 ]

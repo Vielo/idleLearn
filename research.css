@@ -135,9 +135,10 @@ img.research-icon {
 
 img.absolute-mark {
 	position: absolute;
-	left: -20px;
+	right: 4px;
 	top: 10px;
 	max-width: 14px;
+	pointer-events: none;
 }
 
 .research-current-image-container {
@@ -272,11 +273,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', end
 	 position: absolute;
 	 left: 35px;
 	 bottom: 25px;
+	 z-index: 9;
  }
 
  .postit-image-container:nth-child(2) {
 	 left: 130px;
 	 bottom: -10px;
+	 z-index: 999;
+ }
+
+ .postit-image-container:nth-child(n+3) {
+	left: 150px;
+	bottom: 80px;
+ }
+
+ .postit-image-container:nth-child(n+3) img {
+	 max-width: 40px;
+	 z-index: 10;
  }
  
 .postit:after {     

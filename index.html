@@ -429,6 +429,7 @@
 				<div class="postit">
 					<div class="postit-image-container"><img id="research-current-image" src="img/research/icon_research_postit.png"></img></div>
 					<div class="postit-image-container" style="visibility: hidden" id="research-completed-mark"><img src="img/research/icon_res_completed.png"></img></div>
+					<div class="postit-image-container" style="visibility: hidden" id="current-research-level-mark-1"><img src="img/rank_1.png"><img></div>
 				</div>
 				<div>
 					<div><h1 class="chalk-underline" id="current-research-title">Current research</h1></div>
@@ -450,10 +451,11 @@
 					<div class="research-tree-container-flex">
 						<div class="tooltip button-research" id="res_laboratory-div" onClick="buyResearchTierOne('res_laboratory')"><img id="res_laboratory" src="img/research/icon_res_laboratory.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 0)" onmouseout="tooltipRemoval(researchTierOneList, 0)"></img><div id="res_laboratoryFluff" class="tiptext"></div></div>
 						<div class="tooltip button-research" id="res_researchSpeedI-div" onClick="buyResearchTierOne('res_researchSpeedI')"><img src="img/research/icon_researchSpeedI.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 7)" onmouseout="tooltipRemoval(researchTierOneList, 7)"></img><div id="res_researchSpeedIFluff" class="tiptext"></div></div>
-
-
 						<div class="tooltip button-research" id="res_oil_extraction-div" onClick="buyResearchTierOne('res_oil_extraction')"><img id="res_oil_extraction" src="img/icon_pumpjack.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 1)" onmouseout="tooltipRemoval(researchTierOneList, 1)"></img><div id="res_oil_extractionFluff" class="tiptext"></div></div>
-						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
+						
+						
+						<div class="tooltip button-research" id="res_quarryI-div" onClick="buyResearchTierOne('res_quarryI')"><img id="res_quarryI" src="img/icon_stoneExtractor.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 8)" onmouseout="tooltipRemoval(researchTierOneList, 8)"></img><div id="res_quarryIFluff" class="tiptext"></div><img class="absolute-mark" src="img/rank_1.png"></img></div>
+						
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>
 						<div class="tooltip button-research" id="res_deep_mining-div" onClick="buyResearchTierOne('res_deep_mining')"><img id="res_deep_mining" src="img/icon_deepStoneMine.png" class="research-icon" onmouseover="tooltipCreation(researchTierOneList, 2)" onmouseout="tooltipRemoval(researchTierOneList, 2)"></img><div id="res_deep_miningFluff" class="tiptext"></div></div>
 						<div class="button-research"><img src="img/research/icon_research.png" class="research-icon"></img></div>

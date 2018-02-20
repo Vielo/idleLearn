@@ -321,9 +321,14 @@ function unlockNewBuilding(research) {
 
 function unlockResearchBonus(research) {
 	if (research == "res_researchSpeedI") {
-		playerState.researchPower = playerState.researchPower * 1.2;
+		playerState.researchPower = playerState.researchPower * researchTierOneList[7].levelBonus;
 		console.log("new research power is " + playerState.researchPower);
 		researchTierOneList[7].unlocked = true;
+	}
+	if (research == "res_quarryI") {
+		buildingsList[0].stuffPerTick.minerals = buildingsList[0].stuffPerTick.minerals * researchTierOneList[8].levelBonus;
+		console.log("new Quarry mining power is " + buildingsList[0].stuffPerTick.minerals);
+		researchTierOneList[8].unlocked = true;
 	}
 }
 
@@ -339,6 +344,10 @@ function buyResearchTierOne(research){	// used to start and process all the rese
 				document.getElementById("current-research-title").setAttribute("class", "chalk-underline");
 				document.getElementById("research-completed-mark").setAttribute("style", "visibility:hidden");
 				/* Removes the completed research indicators */
+
+				if (researchTierOneList[item].level == 1) {
+					document.getElementById("current-research-level-mark-1").setAttribute("style", "visibility:visible");
+				}
 
 				document.getElementById(researchTierOneList[item].codeName + "-div").removeAttribute("onClick");
 				document.getElementById("science").innerHTML= abbrNum(currencyList.science, 2);
