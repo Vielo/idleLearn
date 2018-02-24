@@ -158,6 +158,15 @@ function tooltipCreation(list, item) {
 			}
 		}
 	}
+	if (list == "upgradesList") {
+		if (item == "cogI") {
+			var cogOneDomElements = document.getElementsByClassName("tiptext cogI")
+			for (i = 0; i < cogOneDomElements.length; i++) {
+				cogOneDomElements[i].innerHTML = "<h1>Efficiency I upgrade</h1><p>Increases this building's production by 100%.</p><p>You can only pick 1 upgrade (not sure about that!), so choose wisely.</p>"
+			}
+		}
+	}
+
 
 	else if (list == researchTierOneList) {
 		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "<h1>" + researchTierOneList[item].name + "</h1>" + "<p>" + researchTierOneList[item].fluffText + "</p>" + "<p>" + abbrNum(researchTierOneList[item].cost, 2) + " science " + " | " + " " + remainingTimeTransformation(researchTierOneList[item].duration / (playerState.researchPower / 1000)) + "</p>";
@@ -319,7 +328,7 @@ function unlockNewBuilding(research) {
 	}
 }
 
-function unlockResearchBonus(research) {
+function unlockResearchBonus(research) {		// Used by the research function; modifies the DOM and main.js to produce research effects
 	if (research == "res_researchSpeedI") {
 		playerState.researchPower = playerState.researchPower * researchTierOneList[7].levelBonus;
 		console.log("new research power is " + playerState.researchPower);
@@ -329,6 +338,26 @@ function unlockResearchBonus(research) {
 		buildingsList[0].stuffPerTick.minerals = buildingsList[0].stuffPerTick.minerals * researchTierOneList[8].levelBonus;
 		console.log("new Quarry mining power is " + buildingsList[0].stuffPerTick.minerals);
 		researchTierOneList[8].unlocked = true;
+	}
+	if (research == "res_buildingUpgradesI") {
+		var lockedDomElements = document.getElementsByClassName("locked");
+		console.log("Total building card number: " + lockedDomElements.length);
+		for (i = 0; i < lockedDomElements.length; i++) {
+			lockedDomElements[i].style.display = "none";
+		};
+		var grayedOutDomElements = document.getElementsByClassName("attachment-first-row");
+		for (i = 0; i < grayedOutDomElements.length; i++) {
+			grayedOutDomElements[i].style.display = "none";
+		}
+		researchTierOneList[9].unlocked = true;
+	}
+}
+
+function buyBuildingUpgrade(upgrade, indexNumber) {		// Processess all the stuff needed for building upgrades
+	if (upgrade == "cogI") {
+		if (indexNumber == 0) {
+			
+		}
 	}
 }
 

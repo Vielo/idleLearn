@@ -69,7 +69,7 @@ var researchTierOneList = [
 		level: 0,
 		levelBonus: 1.2,
 		codeName: 'res_researchSpeedI',
-		fluffText: 'Provides further training to your scientists, allowing them to make progress more swiftly.',
+		fluffText: 'Provides further training to your scientists, allowing them to make progress 20% faster.',
 		icon: 'img/research/icon_researchSpeedI.png',
 		duration: 12000 // 12 seconds
 	},
@@ -82,6 +82,15 @@ var researchTierOneList = [
 		codeName: 'res_quarryI',
 		fluffText: 'Improves the mineral output of Quarries by 50%.',
 		icon: 'img/icon_stoneExtractor.png',
+		duration: 7000 // 7 seconds
+	},
+	buildingUpgradesI = {		// index 9
+		name: "Building Upgrades I",
+		cost: 10000,
+		unlocked: false,
+		codeName: 'res_buildingUpgradesI',
+		fluffText: 'Unlocks the first tier of building upgrades.',
+		icon: 'img/research/icon_building_upgrades.png',
 		duration: 7000 // 7 seconds
 	}
 ]

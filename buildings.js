@@ -29,6 +29,7 @@ var buildingsList = [
 		fluffText: "A man without calluses is no man at all.",
 		totalAmount: 0,
 		codeName: "stoneExtractor",
+		upgrade: "",
 		tickSpeed: 3500
 	},
 
