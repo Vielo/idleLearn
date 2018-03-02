@@ -65,8 +65,9 @@
 	<section>
 		
 		<article id="Production" class="tabContent">
-			<div>
-				<img src="img/icon_mineStone.png" onClick="stoneClick(1)"></img>
+			<div class="manual-mining">
+				<div><img src="img/icon_mineStone.png" onClick="stoneClick(1)"></img></div>
+				<div><p>Click the pickaxe icon to manually mine minerals!</p></div>
 			</div>
 			<div class="buildings-container">
 				<div class="basic-buildings">
@@ -101,7 +102,7 @@
 							<div class="locked"><img src="img/icon_lock.png"></img></div>
 							<div class="buildings-attachments-items">
 								<div class="grayed-out attachment-first-row"></div>
-								<div class="attachment-image tooltip" onmouseover="tooltipCreation('upgradesList', 'cogI')" onmouseout="tooltipRemoval('upgradesList', 'cogI')"><img src="img/icon_cog.png"></img><div class="tiptext cogI"></div></div>
+								<div class="attachment-image tooltip" onmouseover="tooltipCreation('upgradesList', 'cogI')" onmouseout="tooltipRemoval('upgradesList', 'cogI')" onclick="buyBuildingUpgrade('cogI', 0)"><img src="img/icon_cog.png"></img><div class="tiptext cogI"></div></div>
 								<div class="attachment-image clockI"><img src="img/icon_clock.png"></img></div>
 								<div class="attachment-image coinI"><img src="img/icon_coin.png"></img></div>
 								<div class="attachment-image starI"><img src="img/icon_star.png"></img></div>

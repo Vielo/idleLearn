@@ -29,6 +29,10 @@ nav {
 	margin-bottom: 0px;
 }
 
+.manual-mining {
+	display: flex;
+}
+
 .glowing-research {
 	-webkit-animation: neon5 1.5s ease-in-out infinite alternate;
 	-moz-animation: neon5 1.5s ease-in-out infinite alternate;

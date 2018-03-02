@@ -178,6 +178,14 @@ function tooltipRemoval(list, item) {
 	if (list == buildingsList) {
 		document.getElementById(buildingsList[item].codeName + "Fluff").innerHTML = "";
 	}
+	if (list == "upgradesList") {
+		if (item == "cogI") {
+			var cogOneDomElements = document.getElementsByClassName("tiptext cogI")
+			for (i = 0; i < cogOneDomElements.length; i++) {
+				cogOneDomElements[i].innerHTML = ""
+			}
+		}
+	}
 	else if (list == researchTierOneList){
 		document.getElementById(researchTierOneList[item].codeName + "Fluff").innerHTML = "";
 	}
@@ -354,8 +362,17 @@ function unlockResearchBonus(research) {		// Used by the research function; modi
 }
 
 function buyBuildingUpgrade(upgrade, indexNumber) {		// Processess all the stuff needed for building upgrades
-	if (upgrade == "cogI") {
-		if (indexNumber == 0) {
+	if (upgrade == "cogI") {		// cog is the efficiency upgrade, it doubles the building's output
+		if (indexNumber == 0) {		// index number 0 is Quarry (stone Extractor)
+			buildingsList[indexNumber].stuffPerTick.minerals = buildingsList[indexNumber].stuffPerTick.minerals * 2;
+			console.log("Production of " + buildingsList[indexNumber].codeName + " is now doubled (" + buildingsList[indexNumber].stuffPerTick.minerals + "/tick.)");
+			window.clearInterval(intervalStoneExtractor);
+			console.log("Stone Extractor/Quarry interval now disabled")
+			initiateInterval(0);
+			console.log("Stone Extractor/Quarry interval now enabled")
+			setTimeout(function() {		// waits 500 ms to update the resourcePerSec info in the building card
+				document.getElementById("stoneExtractorStonePerSec").innerHTML=abbrNum(currenciesPerSec.minerals, 2);
+			}, 500)
 			
 		}
 	}
@@ -760,7 +777,7 @@ function updateButtonTitles(item) {		// updates button titles for all production
 	document.getElementById(buildingsList[item].codeName + "ButtonBuyTwentyFive").setAttribute("title", "Cost: " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).minerals), 2) + " minerals" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).steel), 2) + " steel" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).oil), 2) + " oil" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).plastics), 2) + " plastics" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).circuits), 2) + " circuits" + ", " + abbrNum(Number(pricePredictionForButtonTitle(buildingsList[item].codeName, 25).science), 2) + " science");
 }
 
-function initiateInterval(item) {		// initiates the resorce generation intervals
+function initiateInterval(item) {		// initiates the resorce generation intervals, item is the index no of the building
 	fillProgressBar(buildingsList[item].codeName, buildingsList[item].tickSpeed);
 	(function(item) {
 		if (buildingsList[item].codeName == "stoneExtractor") {
